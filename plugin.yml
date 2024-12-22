@@ -1,0 +1,6 @@
+name: Lobby
+version: 1.0.0
+main: arkania\Main
+src-namespace-prefix: arkania\
+api: [5.0.0]
+author: TEZULS
