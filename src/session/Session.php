@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace arkania\session;
 
 use arkania\database\result\SqlSelectResult;
+use arkania\gui\BaseMenu;
 use arkania\Main;
 use arkania\utils\Date;
 use arkania\utils\Utils;
@@ -13,6 +14,14 @@ use pocketmine\Server;
 
 class Session {
     use SessionStorage;
+
+    private static BaseMenu|string|null $currentInventory = null;
+    public function setCurrent(BaseMenu|string|null $inventory) : void {
+        self::$currentInventory = $inventory;
+    }
+    public function getCurrent() : BaseMenu|string|null {
+        return self::$currentInventory;
+    }
 
     public function getRank() : PromiseInterface {
         return Main::getInstance()->getDatabase()->getConnector()->executeSelect(

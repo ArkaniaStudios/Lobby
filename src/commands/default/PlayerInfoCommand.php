@@ -7,6 +7,7 @@ use arkania\commands\CommandBase;
 use arkania\commands\parameters\PlayerParameter;
 use arkania\database\result\SqlSelectResult;
 use arkania\Main;
+use arkania\session\economy\EconomyManager;
 use arkania\session\permissions\DefaultsPermissions;
 use arkania\session\ranks\Ranks;
 use arkania\utils\Utils;
@@ -49,20 +50,38 @@ class PlayerInfoCommand extends CommandBase {
             }
             $infos = $result->getRows()[0];
             Main::getInstance()->getRanksManager()->getRank($infos['rank'])->then(function (?Ranks $ranks) use ($infos, $sender, $target) : void {
-                $message = Utils::getPrefix() . 'Voici les informations de ' . $ranks->getColor() . $target . ' §r:' . "\n";
-                $message .= "\n§7- §fGrade: §r" . $ranks->getColor() . $ranks->getName();
-                $message .= "\n§7- §fTitre: §r" . $ranks->getColor() . $infos['title'];
-                $message .= "\n§7- §fDernière connexion: §r" . $ranks->getColor() . $infos['last_login'];
-                $message .= "\n§7- §fPremière connexion: §r" . $ranks->getColor() . $infos['first_login'];
-                $status = unserialize($infos['online']);
-                if($status['status'] === '§aEn ligne') {
-                    $msg = '§aEn ligne §f(' . $ranks->getColor() . $status['server'] . '§f)';
-                }else{
-                    $msg = '§cHors ligne';
-                }
-                $message .= "\n§7- §fStatus: §r" . $msg;
-                $sender->sendMessage($message);
+                Main::getInstance()->getDatabase()->getConnector()->executeSelect(
+                    "SELECT money FROM economy WHERE player = ?",
+                    [$target]
+                )->then(function (SqlSelectResult $result) use ($ranks, $infos, $target, $sender) : void {
+                    $message = Utils::getPrefix() . 'Voici les informations de ' . $ranks->getColor() . $target . ' §r:' . "\n";
+                    $message .= "\n§7- §fGrade: §r" . $ranks->getColor() . $ranks->getName();
+                    $message .= "\n§7- §fPièce(s) d'or: §r" . $ranks->getColor() . self::formatNumber($result->getRows()[0]['money']);
+                    $message .= "\n§7- §fTitre: §r" . $ranks->getColor() . $infos['title'];
+                    $message .= "\n§7- §fDernière connexion: §r" . $ranks->getColor() . $infos['last_login'];
+                    $message .= "\n§7- §fPremière connexion: §r" . $ranks->getColor() . $infos['first_login'];
+                    $status = unserialize($infos['online']);
+                    if($status['status'] === '§aEn ligne') {
+                        $msg = '§aEn ligne §f(' . $ranks->getColor() . $status['server'] . '§f)';
+                    }else{
+                        $msg = '§cHors ligne';
+                    }
+                    $message .= "\n§7- §fStatus: §r" . $msg;
+                    $sender->sendMessage($message);
+                });
             });
         });
+    }
+
+    public static function formatNumber(float $number) : string {
+        if ($number >= 1000000000) {
+            return number_format($number / 1000000000, 2) . 'B';
+        } elseif ($number >= 1000000) {
+            return number_format($number / 1000000, 2) . 'M';
+        } elseif ($number >= 1000) {
+            return number_format($number / 1000, 2) . 'K';
+        } else {
+            return (string)$number;
+        }
     }
 }

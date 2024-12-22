@@ -7,6 +7,7 @@ use arkania\session\Session;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\item\VanillaItems;
+use pocketmine\player\GameMode;
 
 class PlayerJoinListener implements Listener {
 
@@ -16,7 +17,7 @@ class PlayerJoinListener implements Listener {
 
         /*Proxy*/
         if($player->getNetworkSession()->getIp() !== "172.18.0.1" && $player->getNetworkSession()->getIp() !== "127.0.0.1"){
-            $player->kick("§cVous avez été kick du serveur car vous n'êtes pas passé par le lobby !\n§fSi vous pensez que ceci est une erreur merci de contacter l'équipe du staff d'arkania : https://discord.gg/ZU7CJ3PtZj");
+            $player->kick("  §cVous avez été kick du serveur car vous n'êtes pas passé par le lobby !\n§cSi ceci est une erreur merci de nous contacter (§ediscord.arkaniastudios.com§c)");
         }
 
         /*Messages*/
@@ -33,6 +34,9 @@ class PlayerJoinListener implements Listener {
         /*Inventory*/
 
         $player->getInventory()->clearAll();
+        $player->getHungerManager()->setFood(20);
+        $player->setHealth(20);
+        $player->getXpManager()->setXpLevel(0);
 
         $compass = VanillaItems::COMPASS();
         $compass->setCustomName("§r§fCarte");

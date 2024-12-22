@@ -11,6 +11,7 @@ use arkania\commands\default\FactionCommand;
 use arkania\commands\default\InformationsCommand;
 use arkania\commands\default\ListCommand;
 use arkania\commands\default\LobbyCommand;
+use arkania\commands\default\NavigatorCommand;
 use arkania\commands\default\PermissionsCommand;
 use arkania\commands\default\PlayerInfoCommand;
 use arkania\commands\default\RanksListCommand;
@@ -22,9 +23,14 @@ use arkania\commands\default\SpawnCommand;
 use arkania\commands\default\StopCommand;
 use arkania\commands\listener\CommandDataPacketListener;
 use arkania\database\DataBaseManager;
+use arkania\items\ItemsManager;
+use arkania\form\listener\FormListener;
+use arkania\gui\listener\MenuListener;
+use arkania\listener\data\DataPacketSendListener;
 use arkania\listener\player\PlayerBreakListener;
 use arkania\listener\player\PlayerChatListener;
 use arkania\listener\player\PlayerDamageListener;
+use arkania\listener\player\PlayerExhaustListener;
 use arkania\listener\player\PlayerInventoryListener;
 use arkania\listener\player\PlayerJoinListener;
 use arkania\listener\player\PlayerLoginListener;
@@ -47,6 +53,8 @@ class Main extends PluginBase {
 
     private DataBaseManager $database;
     private RanksManager $ranksManager;
+    private ItemsManager $itemsManager;
+
 
     /**
      * @throws MissingPermissionException
@@ -63,6 +71,7 @@ class Main extends PluginBase {
 
         $this->database = new DataBaseManager($this);
         $this->ranksManager = new RanksManager();
+        $this->itemsManager = new ItemsManager();
 
     }
 
@@ -76,7 +85,11 @@ class Main extends PluginBase {
             new PlayerInventoryListener(),
             new PlayerPlaceListener(),
             new PlayerBreakListener(),
-            new PlayerDamageListener()
+            new PlayerDamageListener(),
+            new DataPacketSendListener(),
+            new MenuListener(),
+            new FormListener(),
+            new PlayerExhaustListener()
         ];
 
         $server = $this->getServer()->getPluginManager();
@@ -105,7 +118,8 @@ class Main extends PluginBase {
             new StopCommand(),
             new RedemCommand(),
             new InformationsCommand(),
-            new PlayerInfoCommand()
+            new PlayerInfoCommand(),
+            new NavigatorCommand()
         );
         new CommandDataPacketListener($this);
     }
@@ -123,6 +137,10 @@ class Main extends PluginBase {
 
     public function getRanksManager() : RanksManager {
         return $this->ranksManager;
+    }
+
+    public function getItemsManager() : ItemsManager {
+        return $this->itemsManager;
     }
 
 }

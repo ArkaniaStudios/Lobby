@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace arkania\form\listener;
 
 use arkania\Main;
+use arkania\utils\Utils;
 use pocketmine\entity\Attribute;
 use pocketmine\event\Listener;
 use pocketmine\event\server\DataPacketSendEvent;
@@ -15,9 +16,9 @@ use pocketmine\scheduler\ClosureTask;
 use function json_decode;
 
 final class FormListener implements Listener {
-	public function onFormReceive(DataPacketSendEvent $event) : void {
-		$packets = $event->getPackets();
-		foreach ($packets as $packet) {
+    public function onFormReceive(DataPacketSendEvent $event) : void {
+        $packets = $event->getPackets();
+        foreach ($packets as $packet) {
             if($packet instanceof ModalFormRequestPacket) {
                 $data = json_decode($packet->formData, true);
                 if($data === null) {
@@ -27,7 +28,7 @@ final class FormListener implements Listener {
                     $player = $networkSession->getPlayer();
                     if(!isset($data['permission'])) {
                         if(!$player->hasPermission($data['permission'])) {
-                            $player->sendMessage("§cYou don't have permission to use this form");
+                            $player->sendMessage(Utils::getErrorPrefix() . "Vous n'avez pas la permission d'effectuer cette action.");
                             $event->cancel();
                         }
                     }
@@ -47,5 +48,5 @@ final class FormListener implements Listener {
                 }
             }
         }
-	}
+    }
 }

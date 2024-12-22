@@ -27,7 +27,7 @@ final class Utils {
     }
 
     public static function getName() : string {
-        return Main::getInstance()->getConfig()->get('name', '§9Lobby');
+        return Main::getInstance()->getConfig()->get('name', 'Lobby');
     }
 
     public static function sendFakeBlock(Player $player, Block $blocks, int $positionX, int $positionY, int $positionZ, ?string $customName = null, ?string $class = null): void {
