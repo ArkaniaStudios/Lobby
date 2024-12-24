@@ -29,6 +29,7 @@ use arkania\gui\listener\MenuListener;
 use arkania\listener\data\DataPacketSendListener;
 use arkania\listener\player\PlayerBreakListener;
 use arkania\listener\player\PlayerChatListener;
+use arkania\listener\player\PlayerClickListener;
 use arkania\listener\player\PlayerDamageListener;
 use arkania\listener\player\PlayerExhaustListener;
 use arkania\listener\player\PlayerInventoryListener;
@@ -89,7 +90,8 @@ class Main extends PluginBase {
             new DataPacketSendListener(),
             new MenuListener(),
             new FormListener(),
-            new PlayerExhaustListener()
+            new PlayerExhaustListener(),
+            new PlayerClickListener()
         ];
 
         $server = $this->getServer()->getPluginManager();
