@@ -1,0 +1,8 @@
+prefix: "§9Infos §l§7» §r"
+
+database:
+  host: '45.145.167.169'
+  username: 'u7_99dEFgXR5X'
+  password: 'SRgHq9cP6xI9zK45xpf2..!r'
+  schema: 's7_arkania'
+  port: 3306
