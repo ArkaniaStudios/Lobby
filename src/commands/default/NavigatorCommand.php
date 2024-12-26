@@ -42,21 +42,20 @@ class NavigatorCommand extends CommandBase {
             new InventoryContent(32, VanillaItems::COMPASS()->setCustomName('§r§fMinage')->setLore(['§r§7Cliquez pour vous téléporter au Minage (§eDev§7)'])),
         ];
         $menu = new DoubleChestMenu(
-            '§8Carte ouverte pour (§9' . $sender->getName() . '§8)',
+            '§8Carte du voyageur',
             true,
             $content,
             function(Player $player, MenuTransaction $transaction) : void {
                 if ($transaction->getSlot() === 13) {
                     if($player->getServer()->getPort() !== 19133) {
+                        $player->removeCurrentWindow();
                         $player->sendMessage(Utils::getPrefix() . "Téléportation vers le lobby...");
                         $player->broadcastSound(new DoorSound());
-                        $player->removeCurrentWindow();
                         Main::getInstance()->getScheduler()->scheduleDelayedTask(new ClosureTask(
                             function () use ($player) : void {
                                 $player->transfer('lobby');
-                            }), 20);
+                            }), 15);
                     }else{
-                        $transaction->discard();
                         $player->removeCurrentWindow();
                         $player->sendMessage(Utils::getErrorPrefix() . 'Vous êtes déjà connecté au serveur du lobby.');
                     }
@@ -69,9 +68,8 @@ class NavigatorCommand extends CommandBase {
                         Main::getInstance()->getScheduler()->scheduleDelayedTask(new ClosureTask(
                             function () use ($player) : void {
                                 $player->transfer('factiondev');
-                            }), 20);
+                            }), 15);
                     }else{
-                        $transaction->discard();
                         $player->removeCurrentWindow();
                         $player->sendMessage(Utils::getErrorPrefix() . 'Vous êtes déjà connecté au serveur de faction.');
                     }
@@ -84,9 +82,8 @@ class NavigatorCommand extends CommandBase {
                         Main::getInstance()->getScheduler()->scheduleDelayedTask(new ClosureTask(
                             function () use ($player) : void {
                                 $player->transfer('minagedev');
-                            }), 20);
+                            }), 15);
                     }else{
-                        $transaction->discard();
                         $player->removeCurrentWindow();
                         $player->sendMessage(Utils::getErrorPrefix() . 'Vous êtes déjà connecté au serveur de minage.');
                     }

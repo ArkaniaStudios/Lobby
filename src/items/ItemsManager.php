@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace arkania\items;
 
 use arkania\items\utils\ItemTypeNames;
-use pocketmine\block\Block;
 use pocketmine\data\bedrock\item\SavedItemData;
 use pocketmine\inventory\CreativeInventory;
 use pocketmine\item\StringToItemParser;
@@ -39,7 +38,7 @@ class ItemsManager {
      * @throws \Exception
      */
     private function registerDefaultItems() : void {
-        //self::registerCustomItem(ItemTypeNames::ITEM_MONEY, ExtraItems::ITEM_MONEY(), [ItemTypeNames::ITEM_MONEY, "item_money"]);
+        self::registerCustomItem(ItemTypeNames::ITEM_MONEY, ExtraItems::ITEM_MONEY(), [ItemTypeNames::ITEM_MONEY, "item_money"]);
     }
 
     /**

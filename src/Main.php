@@ -101,8 +101,8 @@ class Main extends PluginBase {
 
         $commands = new CommandCache($this);
         $commands->unregisterCommands(
-            //'stop',
-            'list'
+            'stop',
+            'list',
         );
         $commands->registerCommands(
             new AddInheritanceCommand(),

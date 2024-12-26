@@ -16,9 +16,9 @@ class PlayerJoinListener implements Listener {
         $session = Session::get($player);
 
         /*Proxy*/
-        if($player->getNetworkSession()->getIp() !== "172.18.0.1" && $player->getNetworkSession()->getIp() !== "127.0.0.1"){
-            $player->kick("  §cVous avez été kick du serveur car vous n'êtes pas passé par le lobby !\n§cSi ceci est une erreur merci de nous contacter (§ediscord.arkaniastudios.com§c)");
-        }
+        //if($player->getNetworkSession()->getIp() !== "172.18.0.1" && $player->getNetworkSession()->getIp() !== "127.0.0.1"){
+        //    $player->kick("  §cVous avez été kick du serveur car vous n'êtes pas passé par le lobby !\n§cSi ceci est une erreur merci de nous contacter (§ediscord.arkaniastudios.com§c)");
+        //}
 
         /*Messages*/
 
