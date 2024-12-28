@@ -131,7 +131,7 @@ class NavigatorCommand extends CommandBase {
                                 $player->removeCurrentWindow();
                                 Main::getInstance()->getScheduler()->scheduleDelayedTask(new ClosureTask(
                                     function () use ($player) : void {
-                                        $player->transfer('faction');
+                                        $player->transfer('factiondev');
                                     }), 15);
                             }elseif($factionStatus === ServersStatus::MAINTENANCE){
                                 if(!$player->hasPermission(DefaultsPermissions::getPermission('maintenance'))) {
@@ -155,7 +155,7 @@ class NavigatorCommand extends CommandBase {
                                 $player->removeCurrentWindow();
                                 Main::getInstance()->getScheduler()->scheduleDelayedTask(new ClosureTask(
                                     function () use ($player) : void {
-                                        $player->transfer('minage');
+                                        $player->transfer('minagedev');
                                     }), 15);
                             }elseif($minageStatus === ServersStatus::MAINTENANCE){
                                 if(!$player->hasPermission(DefaultsPermissions::getPermission('maintenance'))) {
