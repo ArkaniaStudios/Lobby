@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace arkania\items;
 
 use arkania\items\utils\ItemTypeNames;
+use Exception;
+use pocketmine\block\Block;
 use pocketmine\data\bedrock\item\SavedItemData;
 use pocketmine\inventory\CreativeInventory;
 use pocketmine\item\StringToItemParser;
@@ -29,21 +31,25 @@ class ItemsManager {
     /** @var ItemTypeEntry[] */
     private array $itemsEntries = [];
 
-    public function setup() : void {
+    /**
+     * @throws ReflectionException
+     */
+    public function __construct() {
         $this->registerDefaultItems();
     }
 
     /**
      * @throws ReflectionException
-     * @throws \Exception
+     * @throws Exception
      */
     private function registerDefaultItems() : void {
         self::registerCustomItem(ItemTypeNames::ITEM_MONEY, ExtraItems::ITEM_MONEY(), [ItemTypeNames::ITEM_MONEY, "item_money"]);
+        self::registerCustomItem(ItemTypeNames::ITEM_LOBBY, ExtraItems::ITEM_LOBBY(), [ItemTypeNames::ITEM_LOBBY, "item_lobby"]);
     }
 
     /**
      * @throws ReflectionException
-     * @throws \Exception
+     * @throws Exception
      */
     public function registerCustomItem(string $id, ItemBase $item, array $stringToItemParserNames) : void {
         GlobalItemDataHandlers::getDeserializer()->map($id, fn () => clone $item);

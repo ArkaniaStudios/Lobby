@@ -1,0 +1,15 @@
+{
+  "resource_pack_name": "vanilla",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "cash": {
+      "textures": "textures/items/cash.png"
+    },
+    "faucille": {
+        "textures": "textures/items/faucille.png"
+    },
+    "sac_engrais": {
+        "textures": "textures/items/sac_engrais.png"
+    }
+  }
+}

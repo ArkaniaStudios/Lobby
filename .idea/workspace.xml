@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="799eb90e-83be-4c4d-bb4e-050c3df4f238" name="Changes" comment="several commands, several system... (forgot a command 🙄)" />
+    <list default="true" id="799eb90e-83be-4c4d-bb4e-050c3df4f238" name="Changes" comment="fix 🦧">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commands/default/NavigatorCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/default/NavigatorCommand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/items/ExtraItems.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/items/ExtraItems.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/items/ItemsManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/items/ItemsManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/items/default/MoneyItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/items/default/MoneyItem.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/items/utils/ItemTypeNames.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/items/utils/ItemTypeNames.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/listener/data/DataPacketSendListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/listener/data/DataPacketSendListener.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,7 +99,7 @@
       <workItem from="1735239297342" duration="353000" />
       <workItem from="1735241829780" duration="2752000" />
       <workItem from="1735316065249" duration="2018000" />
-      <workItem from="1735405084798" duration="10693000" />
+      <workItem from="1735405084798" duration="14703000" />
     </task>
     <task id="LOCAL-00001" summary="init + several things ⚛️">
       <option name="closed" value="true" />
@@ -165,7 +173,71 @@
       <option name="project" value="LOCAL" />
       <updated>1735425648301</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="new navigator command 🥖">
+      <option name="closed" value="true" />
+      <created>1735425845824</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1735425845824</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fix crash 🙄">
+      <option name="closed" value="true" />
+      <created>1735426114924</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1735426114924</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fix crash #2 🙄">
+      <option name="closed" value="true" />
+      <created>1735426231932</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1735426231932</updated>
+    </task>
+    <task id="LOCAL-00013" summary="fix bug 🙄">
+      <option name="closed" value="true" />
+      <created>1735426494722</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1735426494722</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fix bug #2 🙄">
+      <option name="closed" value="true" />
+      <created>1735426950559</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1735426950559</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fix bug #3 🙄">
+      <option name="closed" value="true" />
+      <created>1735427142091</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1735427142091</updated>
+    </task>
+    <task id="LOCAL-00016" summary="add pack system 📜">
+      <option name="closed" value="true" />
+      <created>1735427852610</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1735427852610</updated>
+    </task>
+    <task id="LOCAL-00017" summary="fix 🦧">
+      <option name="closed" value="true" />
+      <created>1735428073391</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1735428073391</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,7 +254,15 @@
     <MESSAGE value="several commands " />
     <MESSAGE value="several commands, several system... " />
     <MESSAGE value="several commands, several system... (forgot a command )" />
-    <option name="LAST_COMMIT_MESSAGE" value="several commands, several system... (forgot a command )" />
+    <MESSAGE value="new navigator command " />
+    <MESSAGE value="fix crash " />
+    <MESSAGE value="fix crash #2 " />
+    <MESSAGE value="fix bug " />
+    <MESSAGE value="fix bug #2 " />
+    <MESSAGE value="fix bug #3 " />
+    <MESSAGE value="add pack system " />
+    <MESSAGE value="fix " />
+    <option name="LAST_COMMIT_MESSAGE" value="fix " />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

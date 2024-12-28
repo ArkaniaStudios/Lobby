@@ -1,4 +1,5 @@
 prefix: "§eInfos §l§7» §r"
+name: "Lobby"
 
 database:
   host: '45.145.167.169'

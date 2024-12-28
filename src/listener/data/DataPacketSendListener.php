@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace arkania\listener\data;
@@ -14,6 +13,7 @@ use pocketmine\network\mcpe\protocol\StartGamePacket;
 use pocketmine\network\mcpe\protocol\types\Experiments;
 
 class DataPacketSendListener implements Listener {
+
     public function onSendDataPacket(DataPacketSendEvent $event) : void {
         $customItemManager = Main::getInstance()->getItemsManager();
         foreach ($event->getPackets() as $packet) {
@@ -31,4 +31,5 @@ class DataPacketSendListener implements Listener {
             }
         }
     }
+
 }

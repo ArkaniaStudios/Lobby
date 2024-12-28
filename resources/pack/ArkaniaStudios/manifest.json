@@ -1,0 +1,30 @@
+{
+    "format_version": 2,
+    "header": {
+        "name": "ArkaniaStudios",
+        "description": "Pack for ArkaniaStudios",
+        "uuid": "652f1492-fc4c-49be-938a-ecd0241f081a",
+        "version": [
+            1,
+            0,
+            0
+        ],
+        "min_engine_version": [
+            1,
+            16,
+            0
+        ]
+    },
+    "modules": [
+        {
+            "description": "Pack for ArkaniaStudios",
+            "type": "resources",
+            "uuid": "37e071fd-ee09-4243-b700-b91bb566f0b7",
+            "version": [
+                1,
+                0,
+                0
+            ]
+        }
+    ]
+}
