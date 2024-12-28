@@ -4,34 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="799eb90e-83be-4c4d-bb4e-050c3df4f238" name="Changes" comment="some changes but not finish 📦">
-      <change afterPath="$PROJECT_DIR$/src/commands/default/MinageCommand.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/network/servers/ServersManager.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/network/servers/ServersStatus.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/default/AddInheritanceCommand.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/default/AddRankCommand.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/default/EditRankCommand.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/default/InformationsCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/default/InformationsCommand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/default/NavigatorCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/default/NavigatorCommand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/default/PermissionsCommand.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/default/PlayerInfoCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/default/PlayerInfoCommand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/default/RemoveInheritanceCommand.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/default/RemoveRankCommand.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/default/SpawnCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/default/SpawnCommand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/customs/items/miscellaneous/LobbyItems.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/items/default/LobbyItems.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/listener/MenuListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/listener/MenuListener.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/listener/player/PlayerClickListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/listener/player/PlayerClickListener.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/listener/player/PlayerJoinListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/listener/player/PlayerJoinListener.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/listener/player/PlayerQuitListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/listener/player/PlayerQuitListener.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/session/Session.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/session/Session.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/session/SessionStorage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/session/SessionStorage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/session/permissions/DefaultsPermissions.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/session/permissions/DefaultsPermissions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/session/ranks/Ranks.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/session/ranks/Ranks.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/session/ranks/RanksManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/session/ranks/RanksManager.php" afterDir="false" />
-    </list>
+    <list default="true" id="799eb90e-83be-4c4d-bb4e-050c3df4f238" name="Changes" comment="several commands, several system... (forgot a command 🙄)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -118,7 +91,7 @@
       <workItem from="1735239297342" duration="353000" />
       <workItem from="1735241829780" duration="2752000" />
       <workItem from="1735316065249" duration="2018000" />
-      <workItem from="1735405084798" duration="10369000" />
+      <workItem from="1735405084798" duration="10693000" />
     </task>
     <task id="LOCAL-00001" summary="init + several things ⚛️">
       <option name="closed" value="true" />
@@ -160,7 +133,39 @@
       <option name="project" value="LOCAL" />
       <updated>1735244032537</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="delete several commmands 📜">
+      <option name="closed" value="true" />
+      <created>1735425460138</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1735425460138</updated>
+    </task>
+    <task id="LOCAL-00007" summary="several commands 📦">
+      <option name="closed" value="true" />
+      <created>1735425532647</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1735425532647</updated>
+    </task>
+    <task id="LOCAL-00008" summary="several commands, several system... 🙄">
+      <option name="closed" value="true" />
+      <created>1735425612627</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1735425612627</updated>
+    </task>
+    <task id="LOCAL-00009" summary="several commands, several system... (forgot a command 🙄)">
+      <option name="closed" value="true" />
+      <created>1735425648301</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1735425648301</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,7 +178,11 @@
     <MESSAGE value="navigatorcommand and several changes ⭐" />
     <MESSAGE value="fix " />
     <MESSAGE value="some changes but not finish " />
-    <option name="LAST_COMMIT_MESSAGE" value="some changes but not finish " />
+    <MESSAGE value="delete several commmands " />
+    <MESSAGE value="several commands " />
+    <MESSAGE value="several commands, several system... " />
+    <MESSAGE value="several commands, several system... (forgot a command )" />
+    <option name="LAST_COMMIT_MESSAGE" value="several commands, several system... (forgot a command )" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
