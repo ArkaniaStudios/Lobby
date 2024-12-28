@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace arkania\items;
 
+use arkania\items\default\LobbyItems;
 use arkania\items\default\MoneyItem;
 use pocketmine\item\Item;
 use pocketmine\item\ItemIdentifier;
@@ -16,6 +17,7 @@ use pocketmine\utils\CloningRegistryTrait;
  * @generate-registry-docblock
  *
  * @method static MoneyItem ITEM_MONEY()
+ * @method static LobbyItems ITEM_LOBBY()
  */
 class ExtraItems {
     use CloningRegistryTrait;
@@ -36,6 +38,7 @@ class ExtraItems {
 
     protected static function setup() : void {
         self::register('item_money', new MoneyItem(new ItemIdentifier(ItemTypeIds::newId()), 'billet', 'cash'));
+        self::register('ITEM_LOBBY', new LobbyItems(new ItemIdentifier(ItemTypeIds::newId()), 'lobby', 'lobby'));
     }
 
 }

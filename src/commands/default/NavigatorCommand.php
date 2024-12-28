@@ -156,6 +156,7 @@ class NavigatorCommand extends CommandBase {
                                 $player->sendMessage(Utils::getErrorPrefix() . 'Le serveur de §eFaction §cest actuellement hors ligne.');
                                 $player->removeCurrentWindow();
                             }
+                        }else{
                             $player->removeCurrentWindow();
                             $player->sendMessage(Utils::getErrorPrefix() . 'Vous êtes déjà connecté au serveur de faction.');
                             return $transaction->discard();
@@ -188,6 +189,7 @@ class NavigatorCommand extends CommandBase {
                                 $player->sendMessage(Utils::getErrorPrefix() . 'Le serveur de §eMinage §cest actuellement hors ligne.');
                                 $player->removeCurrentWindow();
                             }
+                        }else{
                             $player->removeCurrentWindow();
                             $player->sendMessage(Utils::getErrorPrefix() . 'Vous êtes déjà connecté au serveur de minage.');
                             return $transaction->discard();
