@@ -31,6 +31,15 @@ class ServersManager {
             }
         });
     }
+
+    public function getServers() : PromiseInterface {
+        return Main::getInstance()->getDatabase()->getConnector()->executeSelect(
+            "SELECT * FROM servers"
+        )->then(function (SqlSelectResult $result) : array {
+            return $result->getRows();
+        });
+    }
+
     public function addServer(string $name, string $ip, int $port, array $status, int $players, int $max_players) : PromiseInterface {
         return Main::getInstance()->getDatabase()->getConnector()->executeGeneric(
             "INSERT INTO servers (name, ip, port, status, players, max_players) VALUES (?, ?, ?, ?, ?, ?)",
