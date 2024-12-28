@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="799eb90e-83be-4c4d-bb4e-050c3df4f238" name="Changes" comment="new navigator command 🥖" />
+    <list default="true" id="799eb90e-83be-4c4d-bb4e-050c3df4f238" name="Changes" comment="fix crash #2 🙄" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,7 +91,7 @@
       <workItem from="1735239297342" duration="353000" />
       <workItem from="1735241829780" duration="2752000" />
       <workItem from="1735316065249" duration="2018000" />
-      <workItem from="1735405084798" duration="11082000" />
+      <workItem from="1735405084798" duration="11385000" />
     </task>
     <task id="LOCAL-00001" summary="init + several things ⚛️">
       <option name="closed" value="true" />
@@ -173,7 +173,23 @@
       <option name="project" value="LOCAL" />
       <updated>1735425845824</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="fix crash 🙄">
+      <option name="closed" value="true" />
+      <created>1735426114924</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1735426114924</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fix crash #2 🙄">
+      <option name="closed" value="true" />
+      <created>1735426231932</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1735426231932</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,7 +207,9 @@
     <MESSAGE value="several commands, several system... " />
     <MESSAGE value="several commands, several system... (forgot a command )" />
     <MESSAGE value="new navigator command " />
-    <option name="LAST_COMMIT_MESSAGE" value="new navigator command " />
+    <MESSAGE value="fix crash " />
+    <MESSAGE value="fix crash #2 " />
+    <option name="LAST_COMMIT_MESSAGE" value="fix crash #2 " />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

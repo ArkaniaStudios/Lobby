@@ -12,12 +12,13 @@ use arkania\Main;
 use arkania\network\servers\ServersStatus;
 use arkania\session\permissions\DefaultsPermissions;
 use arkania\session\Session;
+use arkania\utils\Date;
 use arkania\utils\Utils;
 use pocketmine\command\CommandSender;
 use pocketmine\item\VanillaItems;
 use pocketmine\player\Player;
 use pocketmine\scheduler\ClosureTask;
-
+use pocketmine\world\sound\DoorSound;
 
 class NavigatorCommand extends CommandBase {
 
@@ -99,7 +100,7 @@ class NavigatorCommand extends CommandBase {
                     if ($transaction->getSlot() === 13) {
                         if($player->getServer()->getPort() !== 19133) {
                             $player->removeCurrentWindow();
-                            $lobbyStatus = unserialize($lobby['status']);
+                            $lobbyStatus = unserialize($lobby['status'])['status'];
                             if($lobbyStatus === ServersStatus::ONLINE) {
                                 $player->sendMessage(Utils::getPrefix() . "Téléportation vers le lobby...");
                                 Session::get($player)->sendSound('portal.travel');
@@ -113,6 +114,8 @@ class NavigatorCommand extends CommandBase {
                                 }
                             }else{
                                 $player->sendMessage(Utils::getErrorPrefix() . 'Le serveur du §eLobby §cest actuellement hors ligne.');
+                                $player->removeCurrentWindow();
+                                return $transaction->discard();
                             }
                         }else{
                             $player->removeCurrentWindow();
@@ -121,7 +124,7 @@ class NavigatorCommand extends CommandBase {
                     }
                     if ($transaction->getSlot() === 30) {
                         if($player->getServer()->getPort() !== 19134) {
-                            $factionStatus = unserialize($faction['status']);
+                            $factionStatus = unserialize($faction['status'])['status'];
                             if($factionStatus === ServersStatus::ONLINE) {
                                 $player->sendMessage(Utils::getPrefix() . "Téléportation vers le serveur de faction...");
                                 Session::get($player)->sendSound('portal.travel');
@@ -136,6 +139,8 @@ class NavigatorCommand extends CommandBase {
                                 }
                             }else{
                                 $player->sendMessage(Utils::getErrorPrefix() . 'Le serveur de §eFaction §cest actuellement hors ligne.');
+                                $player->removeCurrentWindow();
+                                return $transaction->discard();
                             }
                             $player->removeCurrentWindow();
                             $player->sendMessage(Utils::getErrorPrefix() . 'Vous êtes déjà connecté au serveur de faction.');
@@ -143,7 +148,7 @@ class NavigatorCommand extends CommandBase {
                     }
                     if ($transaction->getSlot() === 32) {
                         if($player->getServer()->getPort() !== 19135) {
-                            $minageStatus = unserialize($minage['status']);
+                            $minageStatus = unserialize($minage['status'])['status'];
                             if($minageStatus === ServersStatus::ONLINE) {
                                 $player->sendMessage(Utils::getPrefix() . "Téléportation vers le Minage...");
                                 Session::get($player)->sendSound('portal.travel');
@@ -158,6 +163,8 @@ class NavigatorCommand extends CommandBase {
                                 }
                             }else {
                                 $player->sendMessage(Utils::getErrorPrefix() . 'Le serveur de §eMinage §cest actuellement hors ligne.');
+                                $player->removeCurrentWindow();
+                                return $transaction->discard();
                             }
                             $player->removeCurrentWindow();
                             $player->sendMessage(Utils::getErrorPrefix() . 'Vous êtes déjà connecté au serveur de minage.');
