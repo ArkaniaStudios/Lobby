@@ -1,0 +1,75 @@
+{
+  "namespace": "hud",
+  "anim_push_start": {
+    "anim_type": "offset",
+    "easing": "out_cubic",
+    "duration": 0.7,
+    "from": [
+      0,
+      0
+    ],
+    "to": [
+      -200,
+      0
+    ],
+    "next": "@hud.anim_wait"
+  },
+  "anim_wait": {
+    "anim_type": "wait",
+    "duration": 1.6,
+    "next": "@hud.anim_push_exit"
+  },
+  "anim_push_exit": {
+    "anim_type": "offset",
+    "easing": "in_cubic",
+    "duration": 0.7,
+    "from": [
+      -200,
+      0
+    ],
+    "to": [
+      0,
+      0
+    ]
+  },
+  "hud_actionbar_text": {
+    "type": "panel",
+    "anchor_from": "top_right",
+    "anchor_to": "top_right",
+    "offset": [
+      200,
+      0
+    ],
+    "controls": [
+      {
+        "popUp_hud_actionbar_text": {
+          "type": "image",
+          "alpha": 0.6,
+          "size": [
+            "100%c + 12px",
+            "100%c + 20px"
+          ],
+          "offset": "@hud.anim_push_start",
+          "texture": "textures/ui/black_scoreboard",
+          "controls": [
+            {
+              "actionbar_message": {
+                "type": "label",
+                "size": [
+                  "default",
+                  "default"
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "color": "$tool_tip_text",
+                "layer": 31,
+                "text": "$actionbar_text",
+                "localize": false
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
