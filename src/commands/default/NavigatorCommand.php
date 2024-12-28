@@ -7,14 +7,15 @@ use arkania\commands\CommandBase;
 use arkania\gui\class\DoubleChestMenu;
 use arkania\gui\InventoryContent;
 use arkania\gui\transaction\MenuTransaction;
+use arkania\gui\transaction\MenuTransactionResult;
 use arkania\Main;
 use arkania\session\permissions\DefaultsPermissions;
+use arkania\session\Session;
 use arkania\utils\Utils;
 use pocketmine\command\CommandSender;
 use pocketmine\item\VanillaItems;
 use pocketmine\player\Player;
 use pocketmine\scheduler\ClosureTask;
-use pocketmine\world\sound\DoorSound;
 
 class NavigatorCommand extends CommandBase {
 
@@ -37,20 +38,35 @@ class NavigatorCommand extends CommandBase {
             return;
         }
         $content = [
-            new InventoryContent(13, VanillaItems::COMPASS()->setCustomName('§r§fLobby')->setLore(['§r§7Cliquez pour vous téléporter au lobby'])),
-            new InventoryContent(30, VanillaItems::COMPASS()->setCustomName('§r§fFaction')->setLore(['§r§7Cliquez pour vous téléporter au Faction (§eDev§7)'])),
-            new InventoryContent(32, VanillaItems::COMPASS()->setCustomName('§r§fMinage')->setLore(['§r§7Cliquez pour vous téléporter au Minage (§eDev§7)'])),
+            new InventoryContent(13, VanillaItems::COMPASS()->setCustomName('§r§c§l»§r§f Lobby§c§l «')->setLore(
+                [
+                    '§r§e §7joueur(s)',
+                    '§r§e(idk pour le status)'
+                ]
+            )),
+            new InventoryContent(30, VanillaItems::COMPASS()->setCustomName('§r§c§l»§r§f Faction§c§l «')->setLore(
+                [
+                    '§r§e0 §7joueur(s)',
+                    '§r§e(idk pour le status)'
+                ]
+            )),
+            new InventoryContent(32, VanillaItems::COMPASS()->setCustomName('§r§c§l»§r§f Minage§c§l «')->setLore(
+                [
+                    '§r§e 0 §7joueur(s)',
+                    '§r§e(idk pour le status)'
+                ]
+            )),
         ];
         $menu = new DoubleChestMenu(
             '§8Carte du voyageur',
             true,
             $content,
-            function(Player $player, MenuTransaction $transaction) : void {
+            function(Player $player, MenuTransaction $transaction) : MenuTransactionResult {
                 if ($transaction->getSlot() === 13) {
                     if($player->getServer()->getPort() !== 19133) {
                         $player->removeCurrentWindow();
                         $player->sendMessage(Utils::getPrefix() . "Téléportation vers le lobby...");
-                        $player->broadcastSound(new DoorSound());
+                        Session::get($player)->sendSound('portal.travel');
                         Main::getInstance()->getScheduler()->scheduleDelayedTask(new ClosureTask(
                             function () use ($player) : void {
                                 $player->transfer('lobby');
@@ -63,7 +79,7 @@ class NavigatorCommand extends CommandBase {
                 if ($transaction->getSlot() === 30) {
                     if($player->getServer()->getPort() !== 19134) {
                         $player->sendMessage(Utils::getPrefix() . "Téléportation vers le Faction (§eDev§f)...");
-                        $player->broadcastSound(new DoorSound());
+                        Session::get($player)->sendSound('portal.travel');
                         $player->removeCurrentWindow();
                         Main::getInstance()->getScheduler()->scheduleDelayedTask(new ClosureTask(
                             function () use ($player) : void {
@@ -77,7 +93,7 @@ class NavigatorCommand extends CommandBase {
                 if ($transaction->getSlot() === 32) {
                     if($player->getServer()->getPort() !== 19135) {
                         $player->sendMessage(Utils::getPrefix() . "Téléportation vers le Minage (§eDev§f)...");
-                        $player->broadcastSound(new DoorSound());
+                        Session::get($player)->sendSound('portal.travel');
                         $player->removeCurrentWindow();
                         Main::getInstance()->getScheduler()->scheduleDelayedTask(new ClosureTask(
                             function () use ($player) : void {
@@ -88,6 +104,7 @@ class NavigatorCommand extends CommandBase {
                         $player->sendMessage(Utils::getErrorPrefix() . 'Vous êtes déjà connecté au serveur de minage.');
                     }
                 }
+                return $transaction->discard();
             }
         );
 

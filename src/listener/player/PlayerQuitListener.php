@@ -15,7 +15,7 @@ class PlayerQuitListener implements Listener {
         $session = Session::get($player);
 
         $event->setQuitMessage('');
-        $player->sendPopup('[§c-§f] ' . $player->getName());
+        $player->sendPopup('§c- ' . $player->getName() . ' §c-');
         $session->save();
 
     }

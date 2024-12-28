@@ -9,6 +9,7 @@ use arkania\Main;
 use arkania\utils\Date;
 use arkania\utils\Utils;
 use arkania\utils\promise\PromiseInterface;
+use pocketmine\network\mcpe\protocol\PlaySoundPacket;
 use pocketmine\player\GameMode;
 use pocketmine\Server;
 
@@ -108,5 +109,18 @@ class Session {
                 ]
             );
         });
+    }
+
+    public function sendSound(string $soundName) : void {
+        $position = $this->getPlayer()->getPosition();
+        $packet = PlaySoundPacket::create(
+            $soundName,
+            $position->x,
+            $position->y,
+            $position->z,
+            100,
+            1
+        );
+        $this->getPlayer()->getNetworkSession()->sendDataPacket($packet);
     }
 }

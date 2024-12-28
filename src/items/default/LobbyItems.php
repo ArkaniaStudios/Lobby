@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace arkania\customs\items\miscellaneous;
+namespace arkania\items\default;
 
 use arkania\items\components\AllowOffHandComponent;
 use arkania\items\components\CanDestroyInCreativeComponent;

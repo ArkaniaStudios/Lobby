@@ -13,6 +13,7 @@ use pocketmine\network\mcpe\NetworkSession;
 use pocketmine\player\GameMode;
 use pocketmine\player\Player;
 use pocketmine\promise\PromiseResolver;
+use ReflectionException;
 
 trait SessionStorage {
 
@@ -29,6 +30,10 @@ trait SessionStorage {
         }
         return self::$data[$player] ?? new Session($player->getNetworkSession());
     }
+
+    /**
+     * @throws ReflectionException
+     */
 
     public static function create(NetworkSession $networkSession) : PromiseInterface {
         $session = new Session($networkSession);
@@ -87,6 +92,10 @@ trait SessionStorage {
     public function __construct(private readonly NetworkSession $networkSession) {
         $this->player = $networkSession->getPlayer();
     }
+
+    /**
+     * @throws ReflectionException
+     */
 
     protected static function save(Session $session) : PromiseInterface {
         return new Promise(fn(PromiseResolver $resolve) => $resolve->resolve($session));
