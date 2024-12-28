@@ -34,6 +34,7 @@ use arkania\listener\player\PlayerPlaceListener;
 use arkania\listener\player\PlayerQuitListener;
 use arkania\network\servers\ServersManager;
 use arkania\network\servers\ServersStatus;
+use arkania\pack\ResourcePack;
 use arkania\session\permissions\DefaultsPermissions;
 use arkania\session\permissions\MissingPermissionException;
 use arkania\session\permissions\PermissionsManager;
@@ -98,6 +99,9 @@ class Main extends PluginBase {
         foreach ($listeners as $listener) {
             $server->registerEvents($listener, $this);
         }
+
+        $resourcePack = new ResourcePack($this);
+        $resourcePack->loadResourcePack();
 
         $commands = new CommandCache($this);
         $commands->unregisterCommands(

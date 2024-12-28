@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="799eb90e-83be-4c4d-bb4e-050c3df4f238" name="Changes" comment="fix bug 🙄">
-      <change beforePath="$PROJECT_DIR$/src/network/servers/ServersStatus.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/servers/ServersStatus.php" afterDir="false" />
+    <list default="true" id="799eb90e-83be-4c4d-bb4e-050c3df4f238" name="Changes" comment="fix bug #3 🙄">
+      <change afterPath="$PROJECT_DIR$/src/pack/ResourcePack.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pack/ResourcesPackFile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +95,7 @@
       <workItem from="1735239297342" duration="353000" />
       <workItem from="1735241829780" duration="2752000" />
       <workItem from="1735316065249" duration="2018000" />
-      <workItem from="1735405084798" duration="11876000" />
+      <workItem from="1735405084798" duration="12772000" />
     </task>
     <task id="LOCAL-00001" summary="init + several things ⚛️">
       <option name="closed" value="true" />
@@ -199,7 +201,23 @@
       <option name="project" value="LOCAL" />
       <updated>1735426494722</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fix bug #2 🙄">
+      <option name="closed" value="true" />
+      <created>1735426950559</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1735426950559</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fix bug #3 🙄">
+      <option name="closed" value="true" />
+      <created>1735427142091</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1735427142091</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,7 +238,9 @@
     <MESSAGE value="fix crash " />
     <MESSAGE value="fix crash #2 " />
     <MESSAGE value="fix bug " />
-    <option name="LAST_COMMIT_MESSAGE" value="fix bug " />
+    <MESSAGE value="fix bug #2 " />
+    <MESSAGE value="fix bug #3 " />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bug #3 " />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
