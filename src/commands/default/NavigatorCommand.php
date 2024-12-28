@@ -111,16 +111,23 @@ class NavigatorCommand extends CommandBase {
                             }elseif($lobbyStatus === ServersStatus::MAINTENANCE){
                                 if(!$player->hasPermission(DefaultsPermissions::getPermission('maintenance'))) {
                                     $player->sendMessage(Utils::getErrorPrefix() . 'Le serveur du §eLobby §cest actuellement en maintenance.');
+                                }else{
+                                    $player->sendMessage(Utils::getPrefix() . "Téléportation vers le lobby...");
+                                    Session::get($player)->sendSound('portal.travel');
+                                    Main::getInstance()->getScheduler()->scheduleDelayedTask(new ClosureTask(
+                                        function () use ($player) : void {
+                                            $player->transfer('lobby');
+                                        }), 15);
                                 }
                             }else{
                                 $player->sendMessage(Utils::getErrorPrefix() . 'Le serveur du §eLobby §cest actuellement hors ligne.');
                                 $player->removeCurrentWindow();
-                                return $transaction->discard();
                             }
                         }else{
                             $player->removeCurrentWindow();
                             $player->sendMessage(Utils::getErrorPrefix() . 'Vous êtes déjà connecté au serveur du lobby.');
                         }
+                        return $transaction->discard();
                     }
                     if ($transaction->getSlot() === 30) {
                         if($player->getServer()->getPort() !== 19134) {
@@ -136,14 +143,22 @@ class NavigatorCommand extends CommandBase {
                             }elseif($factionStatus === ServersStatus::MAINTENANCE){
                                 if(!$player->hasPermission(DefaultsPermissions::getPermission('maintenance'))) {
                                     $player->sendMessage(Utils::getErrorPrefix() . 'Le serveur de §eFaction §cest actuellement en maintenance.');
+                                }else{
+                                    $player->sendMessage(Utils::getPrefix() . "Téléportation vers le serveur de faction...");
+                                    Session::get($player)->sendSound('portal.travel');
+                                    $player->removeCurrentWindow();
+                                    Main::getInstance()->getScheduler()->scheduleDelayedTask(new ClosureTask(
+                                        function () use ($player) : void {
+                                            $player->transfer('factiondev');
+                                        }), 15);
                                 }
                             }else{
                                 $player->sendMessage(Utils::getErrorPrefix() . 'Le serveur de §eFaction §cest actuellement hors ligne.');
                                 $player->removeCurrentWindow();
-                                return $transaction->discard();
                             }
                             $player->removeCurrentWindow();
                             $player->sendMessage(Utils::getErrorPrefix() . 'Vous êtes déjà connecté au serveur de faction.');
+                            return $transaction->discard();
                         }
                     }
                     if ($transaction->getSlot() === 32) {
@@ -160,14 +175,22 @@ class NavigatorCommand extends CommandBase {
                             }elseif($minageStatus === ServersStatus::MAINTENANCE){
                                 if(!$player->hasPermission(DefaultsPermissions::getPermission('maintenance'))) {
                                     $player->sendMessage(Utils::getErrorPrefix() . 'Le serveur de §eMinage §cest actuellement en maintenance.');
+                                }else{
+                                    $player->sendMessage(Utils::getPrefix() . "Téléportation vers le Minage...");
+                                    Session::get($player)->sendSound('portal.travel');
+                                    $player->removeCurrentWindow();
+                                    Main::getInstance()->getScheduler()->scheduleDelayedTask(new ClosureTask(
+                                        function () use ($player) : void {
+                                            $player->transfer('minagedev');
+                                        }), 15);
                                 }
                             }else {
                                 $player->sendMessage(Utils::getErrorPrefix() . 'Le serveur de §eMinage §cest actuellement hors ligne.');
                                 $player->removeCurrentWindow();
-                                return $transaction->discard();
                             }
                             $player->removeCurrentWindow();
                             $player->sendMessage(Utils::getErrorPrefix() . 'Vous êtes déjà connecté au serveur de minage.');
+                            return $transaction->discard();
                         }
                     }
                     return $transaction->discard();
