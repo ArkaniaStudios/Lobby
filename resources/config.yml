@@ -1,4 +1,4 @@
-prefix: "§9Infos §l§7» §r"
+prefix: "§eInfos §l§7» §r"
 
 database:
   host: '45.145.167.169'

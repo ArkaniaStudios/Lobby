@@ -4,20 +4,15 @@ declare(strict_types=1);
 namespace arkania;
 
 use arkania\commands\CommandCache;
-use arkania\commands\default\AddInheritanceCommand;
-use arkania\commands\default\AddRankCommand;
-use arkania\commands\default\EditRankCommand;
 use arkania\commands\default\FactionCommand;
 use arkania\commands\default\InformationsCommand;
 use arkania\commands\default\ListCommand;
 use arkania\commands\default\LobbyCommand;
+use arkania\commands\default\MinageCommand;
 use arkania\commands\default\NavigatorCommand;
-use arkania\commands\default\PermissionsCommand;
 use arkania\commands\default\PlayerInfoCommand;
 use arkania\commands\default\RanksListCommand;
 use arkania\commands\default\RedemCommand;
-use arkania\commands\default\RemoveInheritanceCommand;
-use arkania\commands\default\RemoveRankCommand;
 use arkania\commands\default\SetRankCommand;
 use arkania\commands\default\SpawnCommand;
 use arkania\commands\default\StopCommand;
@@ -37,11 +32,14 @@ use arkania\listener\player\PlayerJoinListener;
 use arkania\listener\player\PlayerLoginListener;
 use arkania\listener\player\PlayerPlaceListener;
 use arkania\listener\player\PlayerQuitListener;
+use arkania\network\servers\ServersManager;
+use arkania\network\servers\ServersStatus;
 use arkania\session\permissions\DefaultsPermissions;
 use arkania\session\permissions\MissingPermissionException;
 use arkania\session\permissions\PermissionsManager;
 use arkania\session\ranks\RanksManager;
 use arkania\session\Session;
+use arkania\utils\Date;
 use Exception;
 use pocketmine\permission\DefaultPermissionNames;
 use pocketmine\plugin\PluginBase;
@@ -55,6 +53,7 @@ class Main extends PluginBase {
     private DataBaseManager $database;
     private RanksManager $ranksManager;
     private ItemsManager $itemsManager;
+    private ServersManager $serversManager;
 
 
     /**
@@ -73,6 +72,7 @@ class Main extends PluginBase {
         $this->database = new DataBaseManager($this);
         $this->ranksManager = new RanksManager();
         $this->itemsManager = new ItemsManager();
+        $this->serversManager = new ServersManager();
 
     }
 
@@ -101,29 +101,32 @@ class Main extends PluginBase {
 
         $commands = new CommandCache($this);
         $commands->unregisterCommands(
-            //'stop',
-            'list'
+            'stop',
+            'list',
+            'transferserver'
         );
         $commands->registerCommands(
-            new AddInheritanceCommand(),
-            new AddRankCommand(),
-            new EditRankCommand(),
             new ListCommand(),
             new LobbyCommand(),
             new FactionCommand(),
-            new PermissionsCommand(),
             new RanksListCommand(),
-            new RemoveInheritanceCommand(),
-            new RemoveRankCommand(),
             new SetRankCommand(),
             new SpawnCommand(),
             new StopCommand(),
             new RedemCommand(),
             new InformationsCommand(),
             new PlayerInfoCommand(),
-            new NavigatorCommand()
+            new NavigatorCommand(),
+            new MinageCommand()
         );
         new CommandDataPacketListener($this);
+
+        $this->getServersManager()->updateServer(
+            $this->getConfig()->get('name'),
+            ['status' => ServersStatus::ONLINE, 'time' => Date::now(false)],
+            0,
+            $this->getServer()->getMaxPlayers()
+        );
     }
 
     protected function onDisable() : void {
@@ -131,6 +134,13 @@ class Main extends PluginBase {
             Session::get($player)->save();
             $player->transfer('lobby');
         }
+
+        $this->getServersManager()->updateServer(
+            $this->getConfig()->get('name'),
+            ['status' => ServersStatus::OFFLINE, 'time' => Date::now(false)],
+            0,
+            $this->getServer()->getMaxPlayers()
+        );
     }
 
     public function getDatabase() : DataBaseManager {
@@ -144,5 +154,10 @@ class Main extends PluginBase {
     public function getItemsManager() : ItemsManager {
         return $this->itemsManager;
     }
+
+    public function getServersManager() : ServersManager {
+        return $this->serversManager;
+    }
+
 
 }

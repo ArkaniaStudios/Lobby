@@ -14,7 +14,7 @@ class PlayerClickListener implements Listener {
         $player = $event->getPlayer();
         $item = $event->getItem();
 
-        if ($item->equals(VanillaItems::COMPASS()->setCustomName("§r§fCarte")->setLore(["§r§7Clique-droit pour interagir avec la carte !"]))) {
+        if ($item->equals(VanillaItems::COMPASS()->setCustomName("§r§fCarte de navigation")->setLore(["§r§7Clique-droit pour interagir avec la carte et ne pas perdre son chemin !"]))) {
             $player->getServer()->dispatchCommand($player, "navigator");
         }
     }

@@ -148,13 +148,6 @@ class RanksManager {
         }
     }
 
-    public function unregister(Player $player) : void {
-        if(isset($this->attachable[$player->getName()])) {
-            $this->attachable[$player->getName()]->remove();
-            unset($this->attachable[$player->getName()]);
-        }
-    }
-
     public function update(Session $session) : void {
         $this->updateNameTag($session->getPlayer());
         $session->getRank()->then(function ($playerRank) use ($session) {
@@ -198,112 +191,6 @@ class RanksManager {
         });
     }
 
-    public function updateRank(Ranks $rank) : PromiseInterface {
-        return Main::getInstance()->getDatabase()->getConnector()->executeChange(
-            'UPDATE ranks SET format = ?, discord_format = ?, nametag = ?, permissions = ?, inheritance = ?, color = ?, position = ?, prefix = ? WHERE name = ?',
-            [
-                $rank->getFormat(),
-                $rank->getDiscordFormat(),
-                $rank->getNametag(),
-                serialize($rank->getPermissions()),
-                serialize($rank->getInheritance()),
-                $rank->getColor(),
-                $rank->getPosition(),
-                $rank->getPrefix(),
-                $rank->getName()
-            ]
-        )->then(function () use ($rank) : void {
-            Main::getInstance()->getDatabase()->getConnector()->executeSelect(
-                "SELECT position FROM ranks WHERE name = ?",
-                [$rank->getName()]
-            )->then(function (SqlSelectResult $result) use ($rank) : void {
-                if($result->count() <= 0) {
-                    return;
-                }
-                $position = $result->getRows()[0]['position'];
-                Main::getInstance()->getDatabase()->getConnector()->executeSelect(
-                    "SELECT * FROM ranks WHERE position = ? AND name != ?",
-                    [$position, $rank->getName()]
-                )->then(function (SqlSelectResult $result) use ($rank) : void {
-                    if($result->count() <= 0) {
-                        return;
-                    }
-                    $otherRank = $result->getRows()[0];
-                    Main::getInstance()->getDatabase()->getConnector()->executeGeneric(
-                        "UPDATE ranks SET position = ? WHERE name = ?",
-                        [$rank->getPosition(), $otherRank['name']]
-                    );
-                });
-            });
-        });
-    }
-
-    public function getNextPosition() : PromiseInterface {
-        return Main::getInstance()->getDatabase()->getConnector()->executeSelect(
-            'SELECT MAX(position) as position FROM ranks;'
-        )->then(function (SqlSelectResult $result) : int {
-            if($result->count() <= 0) {
-                return 1;
-            }
-            return $result->getRows()[0]['position'] + 1;
-        });
-    }
-
-    public function addRank(string $rank) : PromiseInterface {
-        return $this->getNextPosition()->then(function (int $position) use ($rank) : void {
-            Main::getInstance()->getDatabase()->getConnector()->executeInsert(
-                'INSERT INTO ranks (name, position, format, discord_format, nametag, permissions, inheritance, color, prefix, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                [
-                    $rank,
-                    $position,
-                    '§f[§e{FAC_RANK}{FAC_NAME}§f]§f[§9' . $rank . '§f] {COLOR}{NAME} §l§7» §r{MESSAGE}',
-                    '[{FAC_RANK}{FAC_NAME}][' . $rank . '] {NAME} » {MESSAGE}',
-                    '{COLOR}[§e{FAC_NAME}{COLOR}] {LINE} §f{NAME} ',
-                    serialize([]),
-                    serialize([]),
-                    '§9',
-                    $rank,
-                    Date::now(false)
-                ]
-            );
-        });
-    }
-
-    public function removeRank(string $name) : PromiseInterface {
-        return Main::getInstance()->getDatabase()->getConnector()->executeGeneric(
-            "DELETE FROM ranks WHERE name = ?",
-            [$name]
-        )->then(function () use ($name) : void {
-            $this->updateRanksPosition();
-            Main::getInstance()->getDatabase()->getConnector()->executeSelect(
-                'SELECT * FROM players WHERE rank = ?',
-                [$name]
-            )->then(function (SqlSelectResult $result) : void {
-                foreach ($result->getRows()[0] as $row) {
-                    Main::getInstance()->getDatabase()->getConnector()->executeGeneric(
-                        "UPDATE players SET rank = ? WHERE name = ?",
-                        ['Joueur', $row['name']]
-                    );
-                }
-            });
-        });
-    }
-
-    private function updateRanksPosition() : void {
-        Main::getInstance()->getDatabase()->getConnector()->executeSelect(
-            "SELECT * FROM ranks ORDER BY position ASC"
-        )->then(function (SqlSelectResult $result) : void {
-            $position = 1;
-            foreach ($result->getRows() as $row) {
-                Main::getInstance()->getDatabase()->getConnector()->executeGeneric(
-                    "UPDATE ranks SET position = ? WHERE name = ?",
-                    [$position, $row['name']]
-                );
-                $position++;
-            }
-        });
-    }
-
     public function setRank(string $name, Ranks $ranks) : PromiseInterface {
         return Main::getInstance()->getDatabase()->getConnector()->executeGeneric(
             "UPDATE players SET rank = ? WHERE name = ?",
@@ -343,51 +230,6 @@ class RanksManager {
                 ];
             }
             return $ranks;
-        });
-    }
-    public function addInheritance(mixed $child, mixed $parent) : PromiseInterface {
-        return Main::getInstance()->getDatabase()->getConnector()->executeSelect(
-            "SELECT * FROM ranks WHERE name = ?",
-            [$child]
-        )->then(function (SqlSelectResult $result) use ($child, $parent) : void {
-            if($result->count() <= 0) {
-                return;
-            }
-            $childRank = $result->getRows()[0];
-            $inheritance = unserialize($childRank['inheritance']);
-            $inheritance[] = $parent;
-            Main::getInstance()->getDatabase()->getConnector()->executeGeneric(
-                "UPDATE ranks SET inheritance = ? WHERE name = ?",
-                [serialize($inheritance), $child]
-            )->then(function () : void {
-                foreach (Server::getInstance()->getOnlinePlayers() as $player) {
-                    $this->update(Session::get($player));
-                }
-            });
-        });
-    }
-    public function removeInheritance(mixed $child, mixed $parent) : PromiseInterface {
-        return Main::getInstance()->getDatabase()->getConnector()->executeSelect(
-            "SELECT * FROM ranks WHERE name = ?",
-            [$child]
-        )->then(function (SqlSelectResult $result) use ($child, $parent) : void {
-            if($result->count() <= 0) {
-                return;
-            }
-            $childRank = $result->getRows()[0];
-            $inheritance = unserialize($childRank['inheritance']);
-            $key = array_search($parent, $inheritance);
-            if($key !== false) {
-                unset($inheritance[$key]);
-            }
-            Main::getInstance()->getDatabase()->getConnector()->executeGeneric(
-                "UPDATE ranks SET inheritance = ? WHERE name = ?",
-                [serialize($inheritance), $child]
-            )->then(function () : void {
-                foreach (Server::getInstance()->getOnlinePlayers() as $player) {
-                    $this->update(Session::get($player));
-                }
-            });
         });
     }
 

@@ -1,8 +1,8 @@
 <?php
-
 declare(strict_types=1);
 
 namespace arkania\commands\default;
+
 use arkania\commands\CommandBase;
 use arkania\session\permissions\DefaultsPermissions;
 use arkania\utils\Date;
@@ -13,6 +13,7 @@ use pocketmine\Server;
 use pocketmine\VersionInfo;
 
 class InformationsCommand extends CommandBase {
+
     public function __construct() {
         parent::__construct(
             'informations',
@@ -22,9 +23,11 @@ class InformationsCommand extends CommandBase {
         );
         $this->setPermission(DefaultsPermissions::getPermission('base'));
     }
+
     public function getCommandParameters() : array {
         return [];
     }
+
     protected function onRun(CommandSender $sender, array $parameters) : void {
         $onlinePlayer = count(Server::getInstance()->getOnlinePlayers());
         $maxPlayer = Server::getInstance()->getMaxPlayers();
@@ -48,14 +51,15 @@ class InformationsCommand extends CommandBase {
             $tps = '§4' . $tps;
         }
         $sender->sendMessage(Utils::getPrefix() . 'Voici les informations du serveur ' . Utils::getName() . '§f:');
-        $sender->sendMessage('Version: §9' . Utils::getFullVersion()['version']);
-        $sender->sendMessage('Minecraft Protocol: §9' . ProtocolInfo::MINECRAFT_VERSION);
-        $sender->sendMessage('PocketMine-MP API: §9' . VersionInfo::BASE_VERSION);
-        $sender->sendMessage('PHP Version: §9' . PHP_VERSION);
+        $sender->sendMessage('Version: §e' . Utils::getFullVersion()['version']);
+        $sender->sendMessage('Minecraft Protocol: §e' . ProtocolInfo::MINECRAFT_VERSION);
+        $sender->sendMessage('PocketMine-MP API: §e' . VersionInfo::BASE_VERSION);
+        $sender->sendMessage('PHP Version: §e' . PHP_VERSION);
         $sender->sendMessage(' ');
-        $sender->sendMessage('Joueurs en ligne: §9' . $format);
-        $sender->sendMessage('OS: §9' . \pocketmine\utils\Utils::getOS());
-        $sender->sendMessage('TPS: §9' . $tps);
-        $sender->sendMessage('En ligne depuis: §9' . Date::create((int)Server::getInstance()->getStartTime())->__toString());
+        $sender->sendMessage('Joueurs en ligne: §e' . $format);
+        $sender->sendMessage('OS: §e' . \pocketmine\utils\Utils::getOS());
+        $sender->sendMessage('TPS: §e' . $tps);
+        $sender->sendMessage('En ligne depuis: §e' . Date::create((int)Server::getInstance()->getStartTime())->__toString());
     }
+
 }

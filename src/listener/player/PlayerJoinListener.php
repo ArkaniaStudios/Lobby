@@ -7,7 +7,6 @@ use arkania\session\Session;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\item\VanillaItems;
-use pocketmine\player\GameMode;
 
 class PlayerJoinListener implements Listener {
 
@@ -23,25 +22,24 @@ class PlayerJoinListener implements Listener {
         /*Messages*/
 
         if (!$player->hasPlayedBefore()) {
-            $player->sendMessage("\n§cArkaniaStudios §f(§7Lobby§f)\n\n§7§l-§r§7 Vote : §evote.arkaniastudios.com\n§7§l-§r§7 §7Boutique : §estore.arkaniastudios.com\n§7§l-§r§7 §7Discord : §ediscord.arkaniastudios.com\n\n");
+            $player->sendMessage("\n§cArkaniaStudios §f(§7Lobby§f)\n\n§7§l»§r§7 Vote : §evote.arkaniastudios.com\n§7§l»§r§7 §7Boutique : §estore.arkaniastudios.com\n§7§l»§r§7 §7Discord : §ediscord.arkaniastudios.com\n\n");
         }else{
-            $player->sendTitle("§fBienvenue sur", "§cArkaniaStudios");
-            $player->sendMessage("\n§cArkaniaStudios §f(§7Lobby§f)\n\n§7§l-§r§7 Vote : §evote.arkaniastudios.com\n§7§l-§r§7 §7Boutique : §estore.arkaniastudios.com\n§7§l-§r§7 §7Discord : §ediscord.arkaniastudios.com\n\n");
+            //rien pour l'instant
         }
         $event->setJoinMessage('');
-        $player->sendPopup('[§a+§f] ' . $player->getName());
+        $player->sendTitle("§l§4» §r§cArkaniaStudios §l§4«", "§7Bienvenue §e" . $player->getName() . " §7sur le lobby !");
+        $player->sendPopup('§a+ ' . $player->getName() . ' §a+');
 
         /*Inventory*/
 
         $player->getInventory()->clearAll();
         $player->getHungerManager()->setFood(20);
         $player->setHealth(20);
-        $player->getXpManager()->setXpLevel(0);
 
         $compass = VanillaItems::COMPASS();
-        $compass->setCustomName("§r§fCarte");
+        $compass->setCustomName("§r§fCarte de navigation");
         $lore = [
-            "§r§7Clique-droit pour interagir avec la carte !",
+            "§r§7Clique-droit pour interagir avec la carte et ne pas perdre son chemin !",
         ];
         $compass->setLore($lore);
         $player->getInventory()->setItem(4, $compass);
