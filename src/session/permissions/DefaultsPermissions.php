@@ -18,6 +18,7 @@ enum DefaultsPermissions: string {
     case PERMISSION_ADDINHERITANCE = 'arkania.permission.addinheritance';
     case PERMISSION_REMOVEINHERITANCE = 'arkania.permission.removeinheritance';
     case PERMISSION_MINAGE = 'arkania.permission.minage';
+    case PERMISSION_HELP = 'arkania.permission.help';
 
     public static function getPermission(string $name): string {
         return match ($name) {
@@ -35,6 +36,7 @@ enum DefaultsPermissions: string {
             'removeinheritance' => self::PERMISSION_REMOVEINHERITANCE->value,
             'spawn' => self::PERMISSION_SPAWN->value,
             'minage' => self::PERMISSION_MINAGE->value,
+            'help' => self::PERMISSION_HELP->value,
             default => throw new MissingPermissionException("Permission $name not found")
         };
     }

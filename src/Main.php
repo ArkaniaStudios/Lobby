@@ -5,6 +5,7 @@ namespace arkania;
 
 use arkania\commands\CommandCache;
 use arkania\commands\default\FactionCommand;
+use arkania\commands\default\HelpCommand;
 use arkania\commands\default\InformationsCommand;
 use arkania\commands\default\ListCommand;
 use arkania\commands\default\LobbyCommand;
@@ -107,7 +108,33 @@ class Main extends PluginBase {
         $commands->unregisterCommands(
             'stop',
             'list',
-            'transferserver'
+            'transferserver',
+            'checkperm',
+            'me',
+            'suicide',
+            'clear',
+            'msg',
+            'about',
+            'plugins',
+            'genplugin',
+            'defaultgamemode',
+            'difficulty',
+            'extractplugin',
+            'handlers',
+            'handlersbyplugin',
+            'listperms',
+            'makeplugin',
+            'particle',
+            'save-on',
+            'save-off',
+            'save-all',
+            'say',
+            'seed',
+            'setworldspawn',
+            'spawnpoint',
+            'status',
+            'timings',
+            'xp'
         );
         $commands->registerCommands(
             new ListCommand(),
@@ -121,7 +148,8 @@ class Main extends PluginBase {
             new InformationsCommand(),
             new PlayerInfoCommand(),
             new NavigatorCommand(),
-            new MinageCommand()
+            new MinageCommand(),
+            new HelpCommand()
         );
         new CommandDataPacketListener($this);
 

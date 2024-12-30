@@ -16,7 +16,7 @@ class InformationsCommand extends CommandBase {
 
     public function __construct() {
         parent::__construct(
-            'informations',
+            'info',
             'Affiche les informations du serveur',
             '/informations',
             aliases: ['info'],
