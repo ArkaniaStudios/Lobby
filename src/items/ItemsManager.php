@@ -45,6 +45,10 @@ class ItemsManager {
     private function registerDefaultItems() : void {
         self::registerCustomItem(ItemTypeNames::ITEM_MONEY, ExtraItems::ITEM_MONEY(), [ItemTypeNames::ITEM_MONEY, "item_money"]);
         self::registerCustomItem(ItemTypeNames::ITEM_LOBBY, ExtraItems::ITEM_LOBBY(), [ItemTypeNames::ITEM_LOBBY, "item_lobby"]);
+        self::registerCustomItem(ItemTypeNames::ITEM_FACTION, ExtraItems::ITEM_FACTION(), [ItemTypeNames::ITEM_FACTION, "item_faction"]);
+        self::registerCustomItem(ItemTypeNames::ITEM_MINAGE, ExtraItems::ITEM_MINAGE(), [ItemTypeNames::ITEM_MINAGE, "item_minage"]);
+        self::registerCustomItem(ItemTypeNames::ITEM_LEFTARROW, ExtraItems::ITEM_LEFTARROW(), [ItemTypeNames::ITEM_LEFTARROW, "item_leftarrow"]);
+        self::registerCustomItem(ItemTypeNames::ITEM_RIGHTARROW, ExtraItems::ITEM_RIGHTARROW(), [ItemTypeNames::ITEM_RIGHTARROW, "item_rightarrow"]);
     }
 
     /**

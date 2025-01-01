@@ -3,7 +3,11 @@ declare(strict_types=1);
 
 namespace arkania\items;
 
-use arkania\items\default\LobbyItems;
+use arkania\items\default\gui\FactionItem;
+use arkania\items\default\gui\LeftArrowItem;
+use arkania\items\default\gui\LobbyItem;
+use arkania\items\default\gui\MinageItem;
+use arkania\items\default\gui\RightArrowItem;
 use arkania\items\default\MoneyItem;
 use pocketmine\item\Item;
 use pocketmine\item\ItemIdentifier;
@@ -17,7 +21,7 @@ use pocketmine\utils\CloningRegistryTrait;
  * @generate-registry-docblock
  *
  * @method static MoneyItem ITEM_MONEY()
- * @method static LobbyItems ITEM_LOBBY()
+ * @method static LobbyItem ITEM_LOBBY()
  */
 class ExtraItems {
     use CloningRegistryTrait;
@@ -38,7 +42,11 @@ class ExtraItems {
 
     protected static function setup() : void {
         self::register('item_money', new MoneyItem(new ItemIdentifier(ItemTypeIds::newId()), 'billet', 'cash'));
-        self::register('ITEM_LOBBY', new LobbyItems(new ItemIdentifier(ItemTypeIds::newId()), 'lobby', 'lobby'));
+        self::register('ITEM_LOBBY', new LobbyItem(new ItemIdentifier(ItemTypeIds::newId()), 'lobby', 'lobby'));
+        self::register('ITEM_FACTION', new FactionItem(new ItemIdentifier(ItemTypeIds::newId()), 'faction', 'faction'));
+        self::register('ITEM_MINAGE', new MinageItem(new ItemIdentifier(ItemTypeIds::newId()), 'minage', 'minage'));
+        self::register('item_leftarrow', new LeftArrowItem(new ItemIdentifier(ItemTypeIds::newId()), 'leftarrow', 'leftarrow'));
+        self::register('item_rightarrow', new RightArrowItem(new ItemIdentifier(ItemTypeIds::newId()), 'rightarrow', 'rightarrow'));
     }
 
 }

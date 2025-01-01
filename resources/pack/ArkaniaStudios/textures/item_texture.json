@@ -5,11 +5,11 @@
     "cash": {
       "textures": "textures/items/cash.png"
     },
-    "faucille": {
-        "textures": "textures/items/faucille.png"
+    "leftarrow": {
+        "textures": "textures/items/leftarrow.png"
     },
-    "sac_engrais": {
-        "textures": "textures/items/sac_engrais.png"
+    "rightarrow": {
+        "textures": "textures/items/rightarrow.png"
     }
   }
 }
