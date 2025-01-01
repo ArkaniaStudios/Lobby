@@ -61,7 +61,7 @@ class FactionCommand extends CommandBase {
                 return;
             }
             $sender->sendMessage(Utils::getPrefix() . "Téléportation vers le faction...");
-            $sender->transfer('faction');
+            $sender->transfer('factiondev');
         } else {
             if(!$sender->hasPermission(DefaultsPermissions::getPermission('faction'))) {
                 $sender->sendMessage(Utils::getErrorPrefix() . "Vous n'avez pas la permission d'utiliser cette commande.");
@@ -73,7 +73,7 @@ class FactionCommand extends CommandBase {
                 return;
             }
             $target->sendMessage(Utils::getPrefix() . "Téléportation vers le faction...");
-            $target->transfer('faction');
+            $target->transfer('factiondev');
         }
     }
 }
