@@ -3,16 +3,20 @@ declare(strict_types=1);
 
 namespace arkania\listener\player;
 
+use arkania\Main;
 use arkania\session\Session;
+use arkania\utils\Utils;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\item\VanillaItems;
+use pocketmine\Server;
 
 class PlayerJoinListener implements Listener {
 
     public function onPlayerJoin(PlayerJoinEvent $event) : void {
         $player = $event->getPlayer();
         $session = Session::get($player);
+        Main::getInstance()->getServersManager()->addPlayer(Utils::getName());
 
         /*Proxy*/
         if($player->getNetworkSession()->getIp() !== "172.18.0.1" && $player->getNetworkSession()->getIp() !== "127.0.0.1"){

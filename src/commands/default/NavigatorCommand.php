@@ -12,13 +12,11 @@ use arkania\Main;
 use arkania\network\servers\ServersStatus;
 use arkania\session\permissions\DefaultsPermissions;
 use arkania\session\Session;
-use arkania\utils\Date;
 use arkania\utils\Utils;
 use pocketmine\command\CommandSender;
 use pocketmine\item\VanillaItems;
 use pocketmine\player\Player;
 use pocketmine\scheduler\ClosureTask;
-use pocketmine\world\sound\DoorSound;
 
 class NavigatorCommand extends CommandBase {
 

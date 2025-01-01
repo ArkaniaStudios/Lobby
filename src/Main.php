@@ -19,6 +19,7 @@ use arkania\commands\default\SpawnCommand;
 use arkania\commands\default\StopCommand;
 use arkania\commands\listener\CommandDataPacketListener;
 use arkania\database\DataBaseManager;
+use arkania\factions\FactionsManager;
 use arkania\items\ItemsManager;
 use arkania\form\listener\FormListener;
 use arkania\gui\listener\MenuListener;
@@ -36,6 +37,7 @@ use arkania\listener\player\PlayerQuitListener;
 use arkania\network\servers\ServersManager;
 use arkania\network\servers\ServersStatus;
 use arkania\pack\ResourcePack;
+use arkania\session\economy\EconomyManager;
 use arkania\session\permissions\DefaultsPermissions;
 use arkania\session\permissions\MissingPermissionException;
 use arkania\session\permissions\PermissionsManager;
@@ -56,6 +58,8 @@ class Main extends PluginBase {
     private RanksManager $ranksManager;
     private ItemsManager $itemsManager;
     private ServersManager $serversManager;
+    private EconomyManager $economyManager;
+    private FactionsManager $factionsManager;
 
 
     /**
@@ -75,6 +79,8 @@ class Main extends PluginBase {
         $this->ranksManager = new RanksManager();
         $this->itemsManager = new ItemsManager();
         $this->serversManager = new ServersManager();
+        $this->economyManager = new EconomyManager();
+        $this->factionsManager = new FactionsManager();
 
     }
 
@@ -138,7 +144,6 @@ class Main extends PluginBase {
         );
         $commands->registerCommands(
             new ListCommand(),
-            new LobbyCommand(),
             new FactionCommand(),
             new RanksListCommand(),
             new SetRankCommand(),
@@ -149,7 +154,6 @@ class Main extends PluginBase {
             new PlayerInfoCommand(),
             new NavigatorCommand(),
             new MinageCommand(),
-            new HelpCommand()
         );
         new CommandDataPacketListener($this);
 
@@ -189,6 +193,14 @@ class Main extends PluginBase {
 
     public function getServersManager() : ServersManager {
         return $this->serversManager;
+    }
+
+    public function getEconomyManager() : EconomyManager {
+        return $this->economyManager;
+    }
+
+    public function getFactionsManager() : FactionsManager {
+        return $this->factionsManager;
     }
 
 

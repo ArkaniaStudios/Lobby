@@ -1,11 +1,15 @@
 <?php
 declare(strict_types=1);
+
 namespace arkania\network\servers;
+
 use arkania\database\result\SqlSelectResult;
 use arkania\Main;
 use arkania\utils\Date;
 use arkania\utils\promise\PromiseInterface;
+
 class ServersManager {
+
     public function __construct() {
         Main::getInstance()->getDatabase()->getConnector()->executeGeneric(
             "CREATE TABLE IF NOT EXISTS servers (
@@ -32,32 +36,27 @@ class ServersManager {
         });
     }
 
-    public function getServers() : PromiseInterface {
-        return Main::getInstance()->getDatabase()->getConnector()->executeSelect(
-            "SELECT * FROM servers"
-        )->then(function (SqlSelectResult $result) : array {
-            return $result->getRows();
-        });
-    }
-
     public function addServer(string $name, string $ip, int $port, array $status, int $players, int $max_players) : PromiseInterface {
         return Main::getInstance()->getDatabase()->getConnector()->executeGeneric(
             "INSERT INTO servers (name, ip, port, status, players, max_players) VALUES (?, ?, ?, ?, ?, ?)",
             [$name, $ip, $port, serialize($status), $players, $max_players]
         );
     }
+
     public function removeServer(string $name) : PromiseInterface {
         return Main::getInstance()->getDatabase()->getConnector()->executeGeneric(
             "DELETE FROM servers WHERE name = ?",
             [$name]
         );
     }
+
     public function updateServer(string $name, array $status, int $players, int $max_players) : PromiseInterface {
         return Main::getInstance()->getDatabase()->getConnector()->executeGeneric(
             "UPDATE servers SET status = ?, players = ?, max_players = ? WHERE name = ?",
             [serialize($status), $players, $max_players, $name]
         );
     }
+
     public function getServer(string $name) : PromiseInterface {
         return Main::getInstance()->getDatabase()->getConnector()->executeSelect(
             "SELECT * FROM servers WHERE name = ?",
@@ -69,4 +68,38 @@ class ServersManager {
             return $result->getRows()[0];
         });
     }
+    public function getServers() : PromiseInterface {
+        return Main::getInstance()->getDatabase()->getConnector()->executeSelect(
+            "SELECT * FROM servers"
+        )->then(function (SqlSelectResult $result) : array {
+            return $result->getRows();
+        });
+    }
+
+    public function addPlayer(string $server) : PromiseInterface {
+        return $this->getServer($server)->then(function (?array $result) use ($server) : void {
+            if ($result !== null) {
+                $this->updateServer(
+                    $server,
+                    unserialize($result['status']),
+                    $result['players'] + 1,
+                    $result['max_players']
+                );
+            }
+        });
+    }
+
+    public function removePlayer(string $server) : PromiseInterface {
+        return $this->getServer($server)->then(function (?array $result) use ($server) : void {
+            if ($result !== null) {
+                $this->updateServer(
+                    $server,
+                    unserialize($result['status']),
+                    $result['players'] - 1,
+                    $result['max_players']
+                );
+            }
+        });
+    }
+
 }

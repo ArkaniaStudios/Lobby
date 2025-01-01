@@ -5,7 +5,10 @@ namespace arkania\commands\default;
 
 use arkania\commands\CommandBase;
 use arkania\commands\parameters\PlayerParameter;
+use arkania\Main;
+use arkania\network\servers\ServersStatus;
 use arkania\session\permissions\DefaultsPermissions;
+use arkania\session\permissions\MissingPermissionException;
 use arkania\utils\Utils;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
@@ -15,7 +18,7 @@ class MinageCommand extends CommandBase {
     public function __construct() {
         parent::__construct(
             'minage',
-            'Permet de rejoindre le serveur minage.',
+            'Permet de miner des minerais',
             '/minage [player]'
         );
         $this->setPermission(DefaultsPermissions::getPermission('base'));
@@ -28,14 +31,38 @@ class MinageCommand extends CommandBase {
     }
 
     protected function onRun(CommandSender $sender, array $parameters) : void {
+        if (!in_array($sender->getName(), ['TEZULS', 'Julien8436'])) {
+            Main::getInstance()->getServersManager()->getServer('Minage')->then(function (?array $server) use ($sender, $parameters) {
+                if ($server === null) {
+                    $sender->sendMessage(Utils::getErrorPrefix() . 'Le serveur minage est introuvable.');
+                    return;
+                }
+                $status = unserialize($server['status'])['status'];
+                if ($status === ServersStatus::OFFLINE) {
+                    $sender->sendMessage(Utils::getErrorPrefix() . 'Le serveur §eMinage §cest hors-ligne.');
+                    return;
+                }
+                $this->extracted($parameters, $sender);
+            });
+        }else{
+            $this->extracted($parameters, $sender);
+        }
+    }
+    /**
+     * @param array $parameters
+     * @param CommandSender $sender
+     * @return void
+     * @throws MissingPermissionException
+     */
+    protected function extracted(array $parameters, CommandSender $sender) : void {
         if(!isset($parameters['target'])) {
             if(!$sender instanceof Player) {
                 $sender->sendMessage(Utils::getErrorPrefix() . "Vous devez être un joueur pour exécuter cette commande.");
                 return;
             }
-            $sender->sendMessage(Utils::getPrefix() . "Téléportation vers le minange...");
-            $sender->transfer('minagedev');
-        }else{
+            $sender->sendMessage(Utils::getPrefix() . "Téléportation vers le minage...");
+            $sender->transfer('lobby');
+        } else {
             if(!$sender->hasPermission(DefaultsPermissions::getPermission('minage'))) {
                 $sender->sendMessage(Utils::getErrorPrefix() . "Vous n'avez pas la permission d'utiliser cette commande.");
                 return;
