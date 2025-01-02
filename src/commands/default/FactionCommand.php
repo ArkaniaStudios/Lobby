@@ -18,7 +18,7 @@ class FactionCommand extends CommandBase {
     public function __construct() {
         parent::__construct(
             'faction',
-            'Aller au serveur faction',
+            'Permet d\'aller au serveur faction',
             '/faction [player]'
         );
         $this->setPermission(DefaultsPermissions::getPermission('base'));
