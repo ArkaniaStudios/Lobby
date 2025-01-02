@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace arkania\items\default;
+namespace arkania\items\default\gui;
 
 use arkania\items\components\AllowOffHandComponent;
 use arkania\items\components\CanDestroyInCreativeComponent;
@@ -13,7 +13,7 @@ use pocketmine\item\ItemUseResult;
 use pocketmine\math\Vector3;
 use pocketmine\player\Player;
 
-class LobbyItems extends ItemBase {
+class LeftArrowItem extends ItemBase {
 
 
     public function getComponents() : array {

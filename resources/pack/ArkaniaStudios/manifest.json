@@ -1,12 +1,12 @@
 {
     "format_version": 2,
     "header": {
-        "name": "ArkaniaStudios",
+        "name": "ArkaniaStudios-Pack",
         "description": "Pack for ArkaniaStudios",
         "uuid": "652f1492-fc4c-49be-938a-ecd0241f081a",
         "version": [
-            1,
-            0,
+            1500,
+            5010,
             0
         ],
         "min_engine_version": [
@@ -17,12 +17,12 @@
     },
     "modules": [
         {
-            "description": "Pack for ArkaniaStudios",
+            "description": "Pack for ArkaniaStudios (§eServer§r)",
             "type": "resources",
             "uuid": "37e071fd-ee09-4243-b700-b91bb566f0b7",
             "version": [
-                1,
-                0,
+                1500,
+                5010,
                 0
             ]
         }

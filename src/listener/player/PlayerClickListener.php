@@ -10,7 +10,7 @@ use pocketmine\item\VanillaItems;
 
 class PlayerClickListener implements Listener {
 
-    public function onNavigatorClick(PlayerItemUseEvent $event): void {
+    public function onNavigatorUse(PlayerItemUseEvent $event): void {
         $player = $event->getPlayer();
         $item = $event->getItem();
 

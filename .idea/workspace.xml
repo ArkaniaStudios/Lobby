@@ -4,14 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="799eb90e-83be-4c4d-bb4e-050c3df4f238" name="Changes" comment="fix 🦧">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/default/NavigatorCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/default/NavigatorCommand.php" afterDir="false" />
+    <list default="true" id="799eb90e-83be-4c4d-bb4e-050c3df4f238" name="Changes" comment="permissions, bugs, crash... 📜">
+      <change afterPath="$PROJECT_DIR$/src/items/default/gui/LeftArrowItem.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/items/default/gui/MinageItem.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/items/default/gui/RightArrowItem.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/items/ExtraItems.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/items/ExtraItems.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/items/ItemsManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/items/ItemsManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/items/default/MoneyItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/items/default/MoneyItem.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/items/default/LobbyItems.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/items/default/gui/LobbyItem.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/items/utils/ItemTypeNames.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/items/utils/ItemTypeNames.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/listener/data/DataPacketSendListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/listener/data/DataPacketSendListener.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +64,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nassi\OneDrive\Desktop\Lobby\src\items\default\gui" />
+      <recent name="C:\Users\nassi\OneDrive\Desktop\Lobby\src\factions" />
       <recent name="C:\Users\nassi\OneDrive\Desktop\Lobby\src\session\economy" />
       <recent name="C:\Users\nassi\OneDrive\Desktop\Lobby\src\items\default" />
     </key>
@@ -99,7 +102,11 @@
       <workItem from="1735239297342" duration="353000" />
       <workItem from="1735241829780" duration="2752000" />
       <workItem from="1735316065249" duration="2018000" />
-      <workItem from="1735405084798" duration="14703000" />
+      <workItem from="1735405084798" duration="14893000" />
+      <workItem from="1735511602803" duration="46000" />
+      <workItem from="1735555342373" duration="1558000" />
+      <workItem from="1735572549544" duration="9727000" />
+      <workItem from="1735740035082" duration="5415000" />
     </task>
     <task id="LOCAL-00001" summary="init + several things ⚛️">
       <option name="closed" value="true" />
@@ -237,7 +244,39 @@
       <option name="project" value="LOCAL" />
       <updated>1735428073391</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="fix item and fix navigator ✏️">
+      <option name="closed" value="true" />
+      <created>1735429744806</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1735429744806</updated>
+    </task>
+    <task id="LOCAL-00019" summary="add pack 🦧">
+      <option name="closed" value="true" />
+      <created>1735429778680</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1735429778680</updated>
+    </task>
+    <task id="LOCAL-00020" summary="add help command and delete some useless commands 📦">
+      <option name="closed" value="true" />
+      <created>1735598801642</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1735598801642</updated>
+    </task>
+    <task id="LOCAL-00021" summary="permissions, bugs, crash... 📜">
+      <option name="closed" value="true" />
+      <created>1735746047406</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1735746047406</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,7 +301,11 @@
     <MESSAGE value="fix bug #3 " />
     <MESSAGE value="add pack system " />
     <MESSAGE value="fix " />
-    <option name="LAST_COMMIT_MESSAGE" value="fix " />
+    <MESSAGE value="fix item and fix navigator ✏️" />
+    <MESSAGE value="add pack " />
+    <MESSAGE value="add help command and delete some useless commands " />
+    <MESSAGE value="permissions, bugs, crash... " />
+    <option name="LAST_COMMIT_MESSAGE" value="permissions, bugs, crash... " />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

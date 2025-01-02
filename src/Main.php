@@ -5,6 +5,7 @@ namespace arkania;
 
 use arkania\commands\CommandCache;
 use arkania\commands\default\FactionCommand;
+use arkania\commands\default\HelpCommand;
 use arkania\commands\default\InformationsCommand;
 use arkania\commands\default\ListCommand;
 use arkania\commands\default\LobbyCommand;
@@ -18,6 +19,7 @@ use arkania\commands\default\SpawnCommand;
 use arkania\commands\default\StopCommand;
 use arkania\commands\listener\CommandDataPacketListener;
 use arkania\database\DataBaseManager;
+use arkania\factions\FactionsManager;
 use arkania\items\ItemsManager;
 use arkania\form\listener\FormListener;
 use arkania\gui\listener\MenuListener;
@@ -35,6 +37,7 @@ use arkania\listener\player\PlayerQuitListener;
 use arkania\network\servers\ServersManager;
 use arkania\network\servers\ServersStatus;
 use arkania\pack\ResourcePack;
+use arkania\session\economy\EconomyManager;
 use arkania\session\permissions\DefaultsPermissions;
 use arkania\session\permissions\MissingPermissionException;
 use arkania\session\permissions\PermissionsManager;
@@ -55,6 +58,8 @@ class Main extends PluginBase {
     private RanksManager $ranksManager;
     private ItemsManager $itemsManager;
     private ServersManager $serversManager;
+    private EconomyManager $economyManager;
+    private FactionsManager $factionsManager;
 
 
     /**
@@ -74,6 +79,8 @@ class Main extends PluginBase {
         $this->ranksManager = new RanksManager();
         $this->itemsManager = new ItemsManager();
         $this->serversManager = new ServersManager();
+        $this->economyManager = new EconomyManager();
+        $this->factionsManager = new FactionsManager();
 
     }
 
@@ -107,11 +114,36 @@ class Main extends PluginBase {
         $commands->unregisterCommands(
             'stop',
             'list',
-            'transferserver'
+            'transferserver',
+            'checkperm',
+            'me',
+            'suicide',
+            'clear',
+            'msg',
+            'about',
+            'plugins',
+            'genplugin',
+            'defaultgamemode',
+            'difficulty',
+            'extractplugin',
+            'handlers',
+            'handlersbyplugin',
+            'listperms',
+            'makeplugin',
+            'particle',
+            'save-on',
+            'save-off',
+            'save-all',
+            'say',
+            'seed',
+            'setworldspawn',
+            'spawnpoint',
+            'status',
+            'timings',
+            'xp'
         );
         $commands->registerCommands(
             new ListCommand(),
-            new LobbyCommand(),
             new FactionCommand(),
             new RanksListCommand(),
             new SetRankCommand(),
@@ -121,7 +153,7 @@ class Main extends PluginBase {
             new InformationsCommand(),
             new PlayerInfoCommand(),
             new NavigatorCommand(),
-            new MinageCommand()
+            new MinageCommand(),
         );
         new CommandDataPacketListener($this);
 
@@ -161,6 +193,14 @@ class Main extends PluginBase {
 
     public function getServersManager() : ServersManager {
         return $this->serversManager;
+    }
+
+    public function getEconomyManager() : EconomyManager {
+        return $this->economyManager;
+    }
+
+    public function getFactionsManager() : FactionsManager {
+        return $this->factionsManager;
     }
 
 
