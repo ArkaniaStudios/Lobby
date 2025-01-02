@@ -185,14 +185,19 @@ class RanksManager {
         $session = Session::get($player);
         $session->getRank()->then(function ($playerRank) use ($session, $player) {
             $this->getRank($playerRank)->then(function (?Ranks $rank) use ($session, $player) {
-                if ($rank === null) {
-                    return;
-                }
-                $player->setNameTag(str_replace(
-                    ['{FAC_NAME}', '{COLOR}', '{LINE}', '{NAME}'],
-                    ['Dev', $rank->getColor(), "\n", $player->getName()],
-                    $rank->getNametag()
-                ));
+                Main::getInstance()->getFactionsManager()->getPlayerFaction($player->getName())->then(function (?array $faction) use ($session, $player, $rank) : void {
+                    if ($rank === null) {
+                        return;
+                    }
+                    if ($faction === null) {
+                        $faction = ['faction' => '...'];
+                    }
+                    $player->setNameTag(str_replace(
+                        ['{FAC_NAME}', '{COLOR}', '{LINE}', '{NAME}'],
+                        [$faction['faction'], $rank->getColor(), "\n", $player->getName()],
+                        $rank->getNametag()
+                    ));
+                });
             });
         });
     }
