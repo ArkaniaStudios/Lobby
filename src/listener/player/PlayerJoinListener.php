@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace arkania\listener\player;
 
+use arkania\items\ExtraItems;
 use arkania\Main;
 use arkania\session\Session;
 use arkania\utils\Utils;
@@ -40,7 +41,7 @@ class PlayerJoinListener implements Listener {
         $player->getHungerManager()->setFood(20);
         $player->setHealth(20);
 
-        $compass = VanillaItems::COMPASS();
+        $compass = ExtraItems::ITEM_MAP();
         $compass->setCustomName("§r§fCarte de navigation");
         $lore = [
             "§r§7Clique-droit pour interagir avec la carte et ne pas perdre son chemin !",

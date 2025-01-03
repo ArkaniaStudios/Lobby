@@ -10,4 +10,5 @@ class ItemTypeNames {
     public const ITEM_MINAGE = "custom:item_minage";
     public const ITEM_LEFTARROW = "custom:item_leftarrow";
     public const ITEM_RIGHTARROW = "custom:item_rightarrow";
+    public const ITEM_MAP = "custom:item_map";
 }

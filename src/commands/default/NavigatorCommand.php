@@ -91,7 +91,7 @@ class NavigatorCommand extends CommandBase {
                 )),
             ];
             $menu = new DoubleChestMenu(
-                '§8Carte du voyageur',
+                '§8Carte du voyageur§n§i§l§s§k§y',
                 true,
                 $content,
                 function(Player $player, MenuTransaction $transaction) use ($lobby, $faction, $minage) : MenuTransactionResult {
