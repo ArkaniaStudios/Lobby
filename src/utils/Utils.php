@@ -62,12 +62,4 @@ final class Utils {
             'date' => 'Lundi 2 Décembre 2024'
         ];
     }
-
-    public static function getAdminNames() : array {
-        return [
-            'Julien8436',
-            'TEZULS',
-            'DiamondWolf4782'
-        ];
-    }
 }

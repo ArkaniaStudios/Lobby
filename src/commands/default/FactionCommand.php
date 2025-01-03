@@ -34,7 +34,7 @@ class FactionCommand extends CommandBase {
         if (!in_array($sender->getName(), ['TEZULS', 'Julien8436'])) {
             Main::getInstance()->getServersManager()->getServer('Faction')->then(function (?array $server) use ($sender, $parameters) {
                 if ($server === null) {
-                    $sender->sendMessage(Utils::getErrorPrefix() . 'Le serveur faction est introuvable.');
+                    $sender->sendMessage(Utils::getErrorPrefix() . 'Le serveur §eFaction §cest introuvable.');
                     return;
                 }
                 $status = unserialize($server['status'])['status'];
@@ -60,7 +60,7 @@ class FactionCommand extends CommandBase {
                 $sender->sendMessage(Utils::getErrorPrefix() . "Vous devez être un joueur pour exécuter cette commande.");
                 return;
             }
-            $sender->sendMessage(Utils::getPrefix() . "Téléportation vers le faction...");
+            $sender->sendMessage(Utils::getPrefix() . "Téléportation vers le §eFaction§f...");
             $sender->transfer('factiondev');
         } else {
             if(!$sender->hasPermission(DefaultsPermissions::getPermission('faction'))) {
@@ -72,7 +72,7 @@ class FactionCommand extends CommandBase {
                 $sender->sendMessage(Utils::getErrorPrefix() . "§e" . $parameters['target'] . "§c n'est pas connecté.");
                 return;
             }
-            $target->sendMessage(Utils::getPrefix() . "Téléportation vers le faction...");
+            $target->sendMessage(Utils::getPrefix() . "Téléportation vers le §eFaction§f...");
             $target->transfer('factiondev');
         }
     }

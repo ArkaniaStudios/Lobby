@@ -5,10 +5,8 @@ namespace arkania;
 
 use arkania\commands\CommandCache;
 use arkania\commands\default\FactionCommand;
-use arkania\commands\default\HelpCommand;
 use arkania\commands\default\InformationsCommand;
 use arkania\commands\default\ListCommand;
-use arkania\commands\default\LobbyCommand;
 use arkania\commands\default\MinageCommand;
 use arkania\commands\default\NavigatorCommand;
 use arkania\commands\default\PlayerInfoCommand;

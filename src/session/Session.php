@@ -36,29 +36,6 @@ class Session {
         });
     }
 
-    public function hasCooldown(string $type) : PromiseInterface {
-        return Main::getInstance()->getDatabase()->getConnector()->executeSelect(
-            "SELECT * FROM cooldowns WHERE player= ? AND type= ? AND end > ?",
-            [$this->getName(), $type, time()]
-        )->then(function (SqlSelectResult $result) use ($type) : array {
-            if ($result->count() <= 0) {
-                Main::getInstance()->getDatabase()->getConnector()->executeGeneric(
-                    "DELETE FROM cooldowns WHERE player= ? AND type= ?",
-                    [$this->getName(), $type]
-                );
-                return ['hasCooldown' => false, 'timeLeft' => 0];
-            }
-            return ['hasCooldown' => true, 'timeLeft' => $result->getRows()[0]['end'] - time()];
-        });
-    }
-
-    public function addCooldown(string $type, int $time) : PromiseInterface {
-        return Main::getInstance()->getDatabase()->getConnector()->executeInsert(
-            "INSERT INTO cooldowns (player, type, end) VALUES (?, ?, ?)",
-            [$this->getName(), $type, time() + $time]
-        );
-    }
-
     public function getPermission() : PromiseInterface {
         return Main::getInstance()->getDatabase()->getConnector()->executeSelect(
             "SELECT permissions FROM players WHERE name= ?",
@@ -73,12 +50,11 @@ class Session {
 
     public function save() : void {
         Main::getInstance()->getDatabase()->getConnector()->executeChange(
-            "UPDATE players SET last_ip = ?, last_login = ?, gamemode = ?, settings = ?, op = ?, online = ? WHERE name = ?",
+            "UPDATE players SET last_ip = ?, last_login = ?, gamemode = ?, op = ?, online = ? WHERE name = ?",
             [
                 $this->getPlayer()->getNetworkSession()->getIp(),
                 Date::create()->__toString(),
                 $this->getPlayer()->getGamemode()->getEnglishName(),
-                serialize([]),
                 (int)Server::getInstance()->isOp($this->getPlayer()->getName()),
                 serialize(['status' => '§cHors ligne', 'server' => Utils::getName()]),
                 $this->getPlayer()->getName()
