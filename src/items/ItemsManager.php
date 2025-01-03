@@ -5,7 +5,6 @@ namespace arkania\items;
 
 use arkania\items\utils\ItemTypeNames;
 use Exception;
-use pocketmine\block\Block;
 use pocketmine\data\bedrock\item\SavedItemData;
 use pocketmine\inventory\CreativeInventory;
 use pocketmine\item\StringToItemParser;
@@ -49,6 +48,7 @@ class ItemsManager {
         self::registerCustomItem(ItemTypeNames::ITEM_MINAGE, ExtraItems::ITEM_MINAGE(), [ItemTypeNames::ITEM_MINAGE, "item_minage"]);
         self::registerCustomItem(ItemTypeNames::ITEM_LEFTARROW, ExtraItems::ITEM_LEFTARROW(), [ItemTypeNames::ITEM_LEFTARROW, "item_leftarrow"]);
         self::registerCustomItem(ItemTypeNames::ITEM_RIGHTARROW, ExtraItems::ITEM_RIGHTARROW(), [ItemTypeNames::ITEM_RIGHTARROW, "item_rightarrow"]);
+        self::registerCustomItem(ItemTypeNames::ITEM_MAP, ExtraItems::ITEM_MAP(), [ItemTypeNames::ITEM_MAP, "item_map"]);
     }
 
     /**

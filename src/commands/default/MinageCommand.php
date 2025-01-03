@@ -34,7 +34,7 @@ class MinageCommand extends CommandBase {
         if (!in_array($sender->getName(), ['TEZULS', 'Julien8436'])) {
             Main::getInstance()->getServersManager()->getServer('Minage')->then(function (?array $server) use ($sender, $parameters) {
                 if ($server === null) {
-                    $sender->sendMessage(Utils::getErrorPrefix() . 'Le serveur minage est introuvable.');
+                    $sender->sendMessage(Utils::getErrorPrefix() . 'Le serveur §eMinage §cest introuvable.');
                     return;
                 }
                 $status = unserialize($server['status'])['status'];
@@ -60,8 +60,8 @@ class MinageCommand extends CommandBase {
                 $sender->sendMessage(Utils::getErrorPrefix() . "Vous devez être un joueur pour exécuter cette commande.");
                 return;
             }
-            $sender->sendMessage(Utils::getPrefix() . "Téléportation vers le minage...");
-            $sender->transfer('lobby');
+            $sender->sendMessage(Utils::getPrefix() . "Téléportation vers le §eMinage§f...");
+            $sender->transfer('minagedev');
         } else {
             if(!$sender->hasPermission(DefaultsPermissions::getPermission('minage'))) {
                 $sender->sendMessage(Utils::getErrorPrefix() . "Vous n'avez pas la permission d'utiliser cette commande.");
@@ -72,7 +72,7 @@ class MinageCommand extends CommandBase {
                 $sender->sendMessage(Utils::getErrorPrefix() . "§e" . $parameters['target'] . "§c n'est pas connecté.");
                 return;
             }
-            $target->sendMessage(Utils::getPrefix() . "Téléportation vers le minage...");
+            $target->sendMessage(Utils::getPrefix() . "Téléportation vers le §eMinage§f...");
             $target->transfer('minagedev');
         }
     }

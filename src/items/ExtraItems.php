@@ -6,6 +6,7 @@ namespace arkania\items;
 use arkania\items\default\gui\FactionItem;
 use arkania\items\default\gui\LeftArrowItem;
 use arkania\items\default\gui\LobbyItem;
+use arkania\items\default\gui\MapItem;
 use arkania\items\default\gui\MinageItem;
 use arkania\items\default\gui\RightArrowItem;
 use arkania\items\default\MoneyItem;
@@ -22,6 +23,11 @@ use pocketmine\utils\CloningRegistryTrait;
  *
  * @method static MoneyItem ITEM_MONEY()
  * @method static LobbyItem ITEM_LOBBY()
+ * @method static FactionItem ITEM_FACTION()
+ * @method static MinageItem ITEM_MINAGE()
+ * @method static LeftArrowItem ITEM_LEFTARROW()
+ * @method static RightArrowItem ITEM_RIGHTARROW()
+ * @method static MapItem ITEM_MAP()
  */
 class ExtraItems {
     use CloningRegistryTrait;
@@ -47,6 +53,8 @@ class ExtraItems {
         self::register('ITEM_MINAGE', new MinageItem(new ItemIdentifier(ItemTypeIds::newId()), 'minage', 'minage'));
         self::register('item_leftarrow', new LeftArrowItem(new ItemIdentifier(ItemTypeIds::newId()), 'leftarrow', 'leftarrow'));
         self::register('item_rightarrow', new RightArrowItem(new ItemIdentifier(ItemTypeIds::newId()), 'rightarrow', 'rightarrow'));
+        self::register('item_map', new MapItem(new ItemIdentifier(ItemTypeIds::newId()), 'map', 'map_item'));
+
     }
 
 }

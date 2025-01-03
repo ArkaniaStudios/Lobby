@@ -43,13 +43,6 @@ class ServersManager {
         );
     }
 
-    public function removeServer(string $name) : PromiseInterface {
-        return Main::getInstance()->getDatabase()->getConnector()->executeGeneric(
-            "DELETE FROM servers WHERE name = ?",
-            [$name]
-        );
-    }
-
     public function updateServer(string $name, array $status, int $players, int $max_players) : PromiseInterface {
         return Main::getInstance()->getDatabase()->getConnector()->executeGeneric(
             "UPDATE servers SET status = ?, players = ?, max_players = ? WHERE name = ?",
