@@ -49,6 +49,9 @@ class ItemsManager {
         self::registerCustomItem(ItemTypeNames::ITEM_LEFTARROW, ExtraItems::ITEM_LEFTARROW(), [ItemTypeNames::ITEM_LEFTARROW, "item_leftarrow"]);
         self::registerCustomItem(ItemTypeNames::ITEM_RIGHTARROW, ExtraItems::ITEM_RIGHTARROW(), [ItemTypeNames::ITEM_RIGHTARROW, "item_rightarrow"]);
         self::registerCustomItem(ItemTypeNames::ITEM_MAP, ExtraItems::ITEM_MAP(), [ItemTypeNames::ITEM_MAP, "item_map"]);
+        self::registerCustomItem(ItemTypeNames::ITEM_SHOPPINGCART, ExtraItems::ITEM_SHOPPINGCART(), [ItemTypeNames::ITEM_SHOPPINGCART, "item_shoppingcart"]);
+        self::registerCustomItem(ItemTypeNames::ITEM_EMPTYSHOPPINGCART, ExtraItems::ITEM_EMPTYSHOPPINGCART(), [ItemTypeNames::ITEM_EMPTYSHOPPINGCART, "item_emptyshoppingcart"]);
+        self::registerCustomItem(ItemTypeNames::ITEM_BACK, ExtraItems::ITEM_BACK(), [ItemTypeNames::ITEM_BACK, "item_back"]);
     }
 
     /**

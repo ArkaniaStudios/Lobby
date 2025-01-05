@@ -3,12 +3,15 @@ declare(strict_types=1);
 
 namespace arkania\items;
 
+use arkania\items\default\gui\BackItem;
+use arkania\items\default\gui\EmptyShoppingCartItem;
 use arkania\items\default\gui\FactionItem;
 use arkania\items\default\gui\LeftArrowItem;
 use arkania\items\default\gui\LobbyItem;
 use arkania\items\default\gui\MapItem;
 use arkania\items\default\gui\MinageItem;
 use arkania\items\default\gui\RightArrowItem;
+use arkania\items\default\gui\ShoppingCartItem;
 use arkania\items\default\MoneyItem;
 use pocketmine\item\Item;
 use pocketmine\item\ItemIdentifier;
@@ -28,6 +31,9 @@ use pocketmine\utils\CloningRegistryTrait;
  * @method static LeftArrowItem ITEM_LEFTARROW()
  * @method static RightArrowItem ITEM_RIGHTARROW()
  * @method static MapItem ITEM_MAP()
+ * @method static ShoppingCartItem ITEM_SHOPPINGCART()
+ * @method static EmptyShoppingCartItem ITEM_EMPTYSHOPPINGCART()
+ * @method static BackItem ITEM_BACK()
  */
 class ExtraItems {
     use CloningRegistryTrait;
@@ -54,6 +60,9 @@ class ExtraItems {
         self::register('item_leftarrow', new LeftArrowItem(new ItemIdentifier(ItemTypeIds::newId()), 'leftarrow', 'leftarrow'));
         self::register('item_rightarrow', new RightArrowItem(new ItemIdentifier(ItemTypeIds::newId()), 'rightarrow', 'rightarrow'));
         self::register('item_map', new MapItem(new ItemIdentifier(ItemTypeIds::newId()), 'map', 'map_item'));
+        self::register('item_shoppingcart', new ShoppingCartItem(new ItemIdentifier(ItemTypeIds::newId()), 'shoppingcart', 'shoppingcart'));
+        self::register('item_emptyshoppingcart', new EmptyShoppingCartItem(new ItemIdentifier(ItemTypeIds::newId()), 'emptyshoppingcart', 'emptyshoppingcart'));
+        self::register('item_back', new BackItem(new ItemIdentifier(ItemTypeIds::newId()), 'back', 'back'));
 
     }
 
