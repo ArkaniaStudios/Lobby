@@ -11,4 +11,8 @@ class ItemTypeNames {
     public const ITEM_LEFTARROW = "custom:item_leftarrow";
     public const ITEM_RIGHTARROW = "custom:item_rightarrow";
     public const ITEM_MAP = "custom:item_map";
+    public const ITEM_SHOPPINGCART = "custom:item_shoppingcart";
+    public const ITEM_EMPTYSHOPPINGCART = "custom:item_emptyshoppingcart";
+    public const ITEM_BACK = "custom:item_back";
+
 }
