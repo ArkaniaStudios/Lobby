@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace arkania\items;
 
 use arkania\items\utils\ItemTypeNames;
-use Exception;
 use pocketmine\data\bedrock\item\SavedItemData;
 use pocketmine\inventory\CreativeInventory;
 use pocketmine\item\StringToItemParser;
@@ -17,7 +16,6 @@ use pocketmine\nbt\tag\StringTag;
 use pocketmine\nbt\tag\Tag;
 use pocketmine\network\mcpe\convert\TypeConverter;
 use pocketmine\network\mcpe\protocol\types\CacheableNbt;
-use pocketmine\network\mcpe\protocol\types\ItemComponentPacketEntry;
 use pocketmine\network\mcpe\protocol\types\ItemTypeEntry;
 use pocketmine\world\format\io\GlobalItemDataHandlers;
 use ReflectionClass;
@@ -25,8 +23,6 @@ use ReflectionException;
 
 class ItemsManager {
 
-    /** @var (ItemTypeEntry|mixed)[] */
-    private array $componentsEntries = [];
     /** @var ItemTypeEntry[] */
     private array $itemsEntries = [];
 
@@ -39,24 +35,17 @@ class ItemsManager {
 
     /**
      * @throws ReflectionException
-     * @throws Exception
+     * @throws \Exception
      */
     private function registerDefaultItems() : void {
         self::registerCustomItem(ItemTypeNames::ITEM_MONEY, ExtraItems::ITEM_MONEY(), [ItemTypeNames::ITEM_MONEY, "item_money"]);
-        self::registerCustomItem(ItemTypeNames::ITEM_LOBBY, ExtraItems::ITEM_LOBBY(), [ItemTypeNames::ITEM_LOBBY, "item_lobby"]);
-        self::registerCustomItem(ItemTypeNames::ITEM_FACTION, ExtraItems::ITEM_FACTION(), [ItemTypeNames::ITEM_FACTION, "item_faction"]);
-        self::registerCustomItem(ItemTypeNames::ITEM_MINAGE, ExtraItems::ITEM_MINAGE(), [ItemTypeNames::ITEM_MINAGE, "item_minage"]);
         self::registerCustomItem(ItemTypeNames::ITEM_LEFTARROW, ExtraItems::ITEM_LEFTARROW(), [ItemTypeNames::ITEM_LEFTARROW, "item_leftarrow"]);
         self::registerCustomItem(ItemTypeNames::ITEM_RIGHTARROW, ExtraItems::ITEM_RIGHTARROW(), [ItemTypeNames::ITEM_RIGHTARROW, "item_rightarrow"]);
-        self::registerCustomItem(ItemTypeNames::ITEM_MAP, ExtraItems::ITEM_MAP(), [ItemTypeNames::ITEM_MAP, "item_map"]);
-        self::registerCustomItem(ItemTypeNames::ITEM_SHOPPINGCART, ExtraItems::ITEM_SHOPPINGCART(), [ItemTypeNames::ITEM_SHOPPINGCART, "item_shoppingcart"]);
-        self::registerCustomItem(ItemTypeNames::ITEM_EMPTYSHOPPINGCART, ExtraItems::ITEM_EMPTYSHOPPINGCART(), [ItemTypeNames::ITEM_EMPTYSHOPPINGCART, "item_emptyshoppingcart"]);
-        self::registerCustomItem(ItemTypeNames::ITEM_BACK, ExtraItems::ITEM_BACK(), [ItemTypeNames::ITEM_BACK, "item_back"]);
     }
 
     /**
      * @throws ReflectionException
-     * @throws Exception
+     * @throws \Exception
      */
     public function registerCustomItem(string $id, ItemBase $item, array $stringToItemParserNames) : void {
         GlobalItemDataHandlers::getDeserializer()->map($id, fn () => clone $item);
@@ -88,8 +77,13 @@ class ItemsManager {
     }
 
     private function registerCustomItemPacketsCache(string $id, ItemBase $item) : void {
-        $this->componentsEntries[] = new ItemComponentPacketEntry($id, new CacheableNbt($item->getCompoundTag()));
-        $this->itemsEntries[] = new ItemTypeEntry($id, $item->getTypeId(), true);
+        $this->itemsEntries[] = new ItemTypeEntry(
+            $id,
+            $item->getTypeId(),
+            true,
+            1,
+            new CacheableNbt($item->getCompoundTag())
+        );
     }
 
     /**
@@ -97,13 +91,6 @@ class ItemsManager {
      */
     public function getItemsEntries(): array {
         return $this->itemsEntries;
-    }
-
-    /**
-     * @return ItemComponentPacketEntry[]
-     */
-    public function getComponentsEntries(): array {
-        return $this->componentsEntries;
     }
 
     public static function getTagType($type): ?Tag {
