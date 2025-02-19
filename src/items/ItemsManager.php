@@ -41,6 +41,7 @@ class ItemsManager {
         self::registerCustomItem(ItemTypeNames::ITEM_MONEY, ExtraItems::ITEM_MONEY(), [ItemTypeNames::ITEM_MONEY, "item_money"]);
         self::registerCustomItem(ItemTypeNames::ITEM_LEFTARROW, ExtraItems::ITEM_LEFTARROW(), [ItemTypeNames::ITEM_LEFTARROW, "item_leftarrow"]);
         self::registerCustomItem(ItemTypeNames::ITEM_RIGHTARROW, ExtraItems::ITEM_RIGHTARROW(), [ItemTypeNames::ITEM_RIGHTARROW, "item_rightarrow"]);
+        self::registerCustomItem(ItemTypeNames::ITEM_MAP, ExtraItems::ITEM_MAP(), [ItemTypeNames::ITEM_MAP, "item_map"]);
     }
 
     /**
